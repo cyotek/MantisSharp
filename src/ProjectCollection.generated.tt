@@ -1,0 +1,7 @@
+﻿<#@ output extension=".cs" #>
+<#
+  string itemType;
+
+  itemType = "Project";
+#>
+<#@ include file="KeyedCollection.ttinclude" #>

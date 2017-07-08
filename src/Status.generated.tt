@@ -1,0 +1,11 @@
+﻿<#@ output extension=".cs" #>
+<#
+  string className;
+  string[] names;
+  string[] types;
+
+  className = "Status";
+  names = new [] { "Color", "Label" };
+  types = new [] { "string", "string" };
+#>
+<#@ include file="LookupItem.ttinclude" #>

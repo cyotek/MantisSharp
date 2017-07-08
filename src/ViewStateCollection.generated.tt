@@ -1,0 +1,7 @@
+﻿<#@ output extension=".cs" #>
+<#
+  string itemType;
+
+  itemType = "ViewState";
+#>
+<#@ include file="KeyedCollection.ttinclude" #>

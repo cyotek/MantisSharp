@@ -1,0 +1,11 @@
+.vs/
+bin/
+obj/
+_NCrunch_*
+nuget/
+packages/
+
+*.ncrunch*
+*.user
+
+browser/secret.config

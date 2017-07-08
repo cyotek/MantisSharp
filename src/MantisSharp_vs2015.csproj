@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A68AC36-19D1-45C0-81E7-A5650E4B2F27}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MantisSharp</RootNamespace>
+    <AssemblyName>MantisSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PETAJSON_NO_DATACONTRACT;PETAJSON_NO_DYNAMIC</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PETAJSON_NO_DATACONTRACT;PETAJSON_NO_DYNAMIC</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\res\MantisSharp.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Attachment.cs" />
+    <Compile Include="AttachmentCollection.cs" />
+    <Compile Include="DeserializationUtilties.cs" />
+    <Compile Include="Issue.cs" />
+    <Compile Include="LocalizedMantisReference.cs" />
+    <Compile Include="LookupCache.cs" />
+    <Compile Include="MantisReference.cs" />
+    <Compile Include="MantisReferenceCache`1.cs" />
+    <Compile Include="MantisClient.cs" />
+    <Compile Include="MantisReferenceCollection.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="NoteCollection.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="PetaJson.cs" />
+    <Compile Include="QueryStringBuilder.cs" />
+    <Compile Include="RestClient.cs" />
+    <Compile Include="IssueStatus.cs" />
+    <Compile Include="StringBuilderCache.cs" />
+    <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\res\MantisSharp.snk">
+      <Link>MantisSharp.snk</Link>
+    </None>
+    <None Include="KeyedCollection.ttinclude" />
+    <None Include="LookupItem.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

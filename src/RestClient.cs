@@ -1,0 +1,153 @@
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Security;
+using System.Text;
+
+namespace MantisSharp
+{
+  internal sealed class RestClient
+  {
+    #region Fields
+
+    private string _authorization;
+
+    #endregion
+
+    #region Properties
+
+    public string Authorization
+    {
+      get { return _authorization; }
+      set { _authorization = value; }
+    }
+
+    #endregion
+
+    #region Methods
+
+    public void ExecuteRequest(string uri, Action<TextReader> action)
+    {
+      this.ExecuteRequest(uri, null, action);
+    }
+
+    public void ExecuteRequest(string uri, string query, Action<TextReader> action)
+    {
+      this.ExecuteRequest(uri, query, null, response => { this.ProcessTextResponse(response, action); });
+    }
+
+    public void ExecuteRequest(string uri, string query, Action<HttpWebRequest> init, Action<HttpWebResponse> action)
+    {
+      HttpWebRequest request;
+
+      request = this.CreateRequest(uri, query);
+
+      if (Debugger.IsAttached)
+      {
+        this.Execute(request, init, action);
+      }
+      else
+      {
+        try
+        {
+          this.Execute(request, init, action);
+        }
+        catch (WebException ex) when (ex.Status == WebExceptionStatus.ProtocolError && ex.Response is HttpWebResponse)
+        {
+          HttpWebResponse response;
+
+          response = (HttpWebResponse)ex.Response;
+
+          switch (response.StatusCode)
+          {
+            case HttpStatusCode.Unauthorized: throw new SecurityException("Invalid authorization key.", ex);
+            default: throw;
+          }
+        }
+      }
+    }
+
+    private HttpWebRequest CreateRequest(string uri, string query)
+    {
+      HttpWebRequest request;
+
+      if (!string.IsNullOrEmpty(query))
+      {
+        if (query[0] == '?')
+        {
+          uri += query;
+        }
+        else
+        {
+          uri += "?" + query;
+        }
+      }
+
+#if NET20 || NET35 || NET40
+      request = (HttpWebRequest)WebRequest.Create(uri);
+#else
+      request = WebRequest.CreateHttp(uri);
+#endif
+      request.Headers.Add("Authorization", _authorization);
+      request.Accept = "application/json";
+      request.ContentType = "application/json";
+
+      return request;
+    }
+
+    private void Execute(HttpWebRequest request, Action<HttpWebRequest> init, Action<HttpWebResponse> action)
+    {
+      init?.Invoke(request);
+
+      using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+      {
+        if (response.StatusCode == HttpStatusCode.OK)
+        {
+          action(response);
+        }
+        else
+        {
+          throw new InvalidOperationException("Unexpected response code.");
+        }
+      }
+    }
+
+    private string GetResponseString(HttpWebResponse response)
+    {
+      Encoding encoding;
+      string result;
+
+      // ReSharper disable once AssignNullToNotNullAttribute
+      encoding = !string.IsNullOrEmpty(response.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+
+      using (Stream stream = response.GetResponseStream())
+      {
+        using (StreamReader reader = new StreamReader(stream, encoding))
+        {
+          result = reader.ReadToEnd();
+        }
+      }
+
+      return result;
+    }
+
+    private void ProcessTextResponse(HttpWebResponse response, Action<TextReader> action)
+    {
+      Encoding encoding;
+
+      // ReSharper disable once AssignNullToNotNullAttribute
+      encoding = !string.IsNullOrEmpty(response.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+
+      using (Stream stream = response.GetResponseStream())
+      {
+        using (StreamReader reader = new StreamReader(stream, encoding))
+        {
+          action(reader);
+        }
+      }
+    }
+
+    #endregion
+  }
+}
