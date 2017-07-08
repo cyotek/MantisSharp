@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security;
@@ -9,6 +8,12 @@ namespace MantisSharp
 {
   internal sealed class RestClient
   {
+    #region Constants
+
+    private const string _jsonContentType = "application/json";
+
+    #endregion
+
     #region Fields
 
     private string _authorization;
@@ -43,27 +48,26 @@ namespace MantisSharp
 
       request = this.CreateRequest(uri, query);
 
-      if (Debugger.IsAttached)
+#if !DEBUG
+      try
+#endif
       {
         this.Execute(request, init, action);
       }
-      else
+#if DEBUG
+      try
+      { }
+#endif
+      catch (WebException ex) when (ex.Status == WebExceptionStatus.ProtocolError && ex.Response is HttpWebResponse)
       {
-        try
-        {
-          this.Execute(request, init, action);
-        }
-        catch (WebException ex) when (ex.Status == WebExceptionStatus.ProtocolError && ex.Response is HttpWebResponse)
-        {
-          HttpWebResponse response;
+        HttpWebResponse response;
 
-          response = (HttpWebResponse)ex.Response;
+        response = (HttpWebResponse)ex.Response;
 
-          switch (response.StatusCode)
-          {
-            case HttpStatusCode.Unauthorized: throw new SecurityException("Invalid authorization key.", ex);
-            default: throw;
-          }
+        switch (response.StatusCode)
+        {
+          case HttpStatusCode.Unauthorized: throw new SecurityException("Invalid authorization key.", ex);
+          default: throw;
         }
       }
     }
@@ -90,8 +94,7 @@ namespace MantisSharp
       request = WebRequest.CreateHttp(uri);
 #endif
       request.Headers.Add("Authorization", _authorization);
-      request.Accept = "application/json";
-      request.ContentType = "application/json";
+      request.Accept = _jsonContentType;
 
       return request;
     }
@@ -104,6 +107,15 @@ namespace MantisSharp
       {
         if (response.StatusCode == HttpStatusCode.OK)
         {
+          string contentType;
+
+          contentType = this.GetContentType(response.ContentType);
+
+          if (!string.Equals(contentType, _jsonContentType, StringComparison.InvariantCultureIgnoreCase))
+          {
+            throw new InvalidDataException("Unexpected content type '" + contentType + "'.");
+          }
+
           action(response);
         }
         else
@@ -111,6 +123,23 @@ namespace MantisSharp
           throw new InvalidOperationException("Unexpected response code.");
         }
       }
+    }
+
+    private string GetContentType(string value)
+    {
+      if (!string.IsNullOrEmpty(value))
+      {
+        int index;
+
+        index = value.IndexOf(';');
+
+        if (index != -1)
+        {
+          value = value.Substring(0, index);
+        }
+      }
+
+      return value;
     }
 
     private string GetResponseString(HttpWebResponse response)
