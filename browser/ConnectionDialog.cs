@@ -63,30 +63,68 @@ namespace MantisSharp.Browser
 
     private void okButton_Click(object sender, EventArgs e)
     {
-      string uri;
-      string key;
+      if (this.ValidateFields())
+      {
+        _baseUri = baseUriTextBox.Text;
+        _apiKey = apiKeyTextBox.Text;
 
-      this.DialogResult = DialogResult.None;
+        this.DialogResult = DialogResult.OK;
+        this.Close();
+      }
+      else
+      {
+        this.DialogResult = DialogResult.None;
+      }
+    }
 
-      uri = baseUriTextBox.Text;
-      key = apiKeyTextBox.Text;
+    private void testConnectionLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      if (this.ValidateFields())
+      {
+        try
+        {
+          MantisClient client;
+          User user;
 
-      if (string.IsNullOrEmpty(uri))
+          this.UseWaitCursor = true;
+
+          client = new MantisClient(baseUriTextBox.Text, apiKeyTextBox.Text);
+
+          user = client.GetCurrentUser();
+
+          MessageBox.Show("Connection attempt successful. Authorized as user '" + user.Name + "'.", "Connection Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show("Connection test failed. " + ex.GetBaseException().Message, "Test Connection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        finally
+        {
+          this.UseWaitCursor = false;
+        }
+      }
+    }
+
+    private bool ValidateFields()
+    {
+      bool result;
+
+      result = false;
+
+      if (string.IsNullOrEmpty(baseUriTextBox.Text))
       {
         MessageBox.Show("Please enter the base MantisBT URI.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
-      else if (string.IsNullOrEmpty(key))
+      else if (string.IsNullOrEmpty(apiKeyTextBox.Text))
       {
         MessageBox.Show("Please enter the API key used to authenticate.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
       else
       {
-        _baseUri = uri;
-        _apiKey = key;
-
-        this.DialogResult = DialogResult.OK;
-        this.Close();
+        result = true;
       }
+
+      return result;
     }
 
     #endregion

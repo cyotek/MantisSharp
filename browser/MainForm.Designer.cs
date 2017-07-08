@@ -213,6 +213,7 @@
       // attachmentsLinkLabel
       // 
       this.attachmentsLinkLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.attachmentsLinkLabel.LinkColor = System.Drawing.SystemColors.HotTrack;
       this.attachmentsLinkLabel.Location = new System.Drawing.Point(0, 0);
       this.attachmentsLinkLabel.Name = "attachmentsLinkLabel";
       this.attachmentsLinkLabel.Size = new System.Drawing.Size(196, 196);
@@ -277,7 +278,7 @@
       this.refreshToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Refresh;
       this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
       this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
       this.refreshToolStripMenuItem.Text = "&Refresh";
       this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
       // 
