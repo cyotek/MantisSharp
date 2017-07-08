@@ -57,6 +57,7 @@
     <Compile Include="IssueStatus.cs" />
     <Compile Include="StringBuilderCache.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\res\MantisSharp.snk">

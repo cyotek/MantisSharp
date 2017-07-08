@@ -215,6 +215,7 @@ namespace MantisSharp
                Tags = props.GetReferences<MantisReferenceCollection, MantisReference>("tags", _lookupCache.Tag),
                Attachments = props.GetChildren<AttachmentCollection, Attachment>("attachments", _lookupCache),
                Notes = props.GetChildren<NoteCollection, Note>("notes", _lookupCache),
+               Monitors = props.GetChildren<UserCollection, User>("monitors", _lookupCache),
                Platform = props.GetString("platform"),
                OperatingSystem = props.GetString("os"),
                OperatingSystemBuild = props.GetString("os_build"),

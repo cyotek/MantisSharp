@@ -25,6 +25,8 @@ namespace MantisSharp
 
     private DateTime _lastModified;
 
+    private UserCollection _monitors;
+
     private NoteCollection _notes;
 
     private string _operatingSystem;
@@ -120,6 +122,12 @@ namespace MantisSharp
     {
       get { return _lastModified; }
       internal set { _lastModified = value; }
+    }
+
+    public UserCollection Monitors
+    {
+      get { return _monitors; }
+      internal set { _monitors = value; }
     }
 
     public NoteCollection Notes
