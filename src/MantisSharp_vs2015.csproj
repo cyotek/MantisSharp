@@ -49,6 +49,7 @@
     <Compile Include="MantisReferenceCollection.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteCollection.cs" />
+    <Compile Include="Profile.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="PetaJson.cs" />
     <Compile Include="QueryStringBuilder.cs" />

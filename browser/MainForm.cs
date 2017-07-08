@@ -450,7 +450,7 @@ namespace MantisSharp.Browser
       {
         userNameToolStripStatusLabel.Text = _currentUser.Name;
         accessLevelToolStripStatusLabel.Text = _currentUser.AccessLevel?.Label;
-        versionToolStripStatusLabel.Text = _client.MantisVersion;
+        versionToolStripStatusLabel.Text = "MantisBT: " + _client.MantisVersion;
       }
     }
 

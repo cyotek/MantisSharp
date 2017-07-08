@@ -27,7 +27,15 @@ namespace MantisSharp
 
     private NoteCollection _notes;
 
+    private string _operatingSystem;
+
+    private string _operatingSystemBuild;
+
+    private string _platform;
+
     private LocalizedMantisReference _priority;
+
+    private Profile _profile;
 
     private MantisReference _project;
 
@@ -120,10 +128,34 @@ namespace MantisSharp
       internal set { _notes = value; }
     }
 
+    public string OperatingSystem
+    {
+      get { return _operatingSystem; }
+      internal set { _operatingSystem = value; }
+    }
+
+    public string OperatingSystemBuild
+    {
+      get { return _operatingSystemBuild; }
+      internal set { _operatingSystemBuild = value; }
+    }
+
+    public string Platform
+    {
+      get { return _platform; }
+      internal set { _platform = value; }
+    }
+
     public LocalizedMantisReference Priority
     {
       get { return _priority; }
       internal set { _priority = value; }
+    }
+
+    public Profile Profile
+    {
+      get { return _profile; }
+      set { _profile = value; }
     }
 
     public MantisReference Project

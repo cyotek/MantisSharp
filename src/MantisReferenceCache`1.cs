@@ -11,14 +11,17 @@ namespace MantisSharp
 
     private readonly object _lock;
 
+    private readonly LookupCache _owner;
+
     #endregion
 
     #region Constructors
 
-    public MantisReferenceCache()
+    public MantisReferenceCache(LookupCache owner)
     {
       _cache = new Dictionary<int, T>();
       _lock = new object();
+      _owner = owner;
     }
 
     #endregion
@@ -48,7 +51,7 @@ namespace MantisSharp
         {
           T newItem;
 
-          newItem = props.Create<T>();
+          newItem = props.Create<T>(_owner);
 
           if (!_cache.TryGetValue(id, out result))
           {

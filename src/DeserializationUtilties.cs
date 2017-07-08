@@ -48,17 +48,18 @@ namespace MantisSharp
                 switch (key)
                 {
                   case "reporter":
+                  case "user":
                     value = cache.User.Get(childProps);
                     break;
                   case "view_state":
                     value = cache.ViewState.Get(childProps);
                     break;
-                  default: throw new NotImplementedException();
+                  default: throw new NotImplementedException("Property '" + key + "' not supported.");
                 }
               }
               else
               {
-                throw new NotImplementedException();
+                throw new NotImplementedException("Type '" + type.FullName + "' not supported.");
               }
             }
 
@@ -75,11 +76,17 @@ namespace MantisSharp
     public static T Create<T>(this Dictionary<string, object> props)
       where T : MantisReference, new()
     {
+      return props.Create<T>(null);
+    }
+
+    public static T Create<T>(this Dictionary<string, object> props, LookupCache cache)
+      where T : MantisReference, new()
+    {
       T result;
 
       result = new T();
 
-      props.CopyTo(result);
+      props.CopyTo(result, cache);
 
       return result;
     }

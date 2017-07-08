@@ -10,6 +10,8 @@
 
     private readonly MantisReferenceCache<LocalizedMantisReference> _priorityLookup;
 
+    private readonly MantisReferenceCache<Profile> _profileLookup;
+
     private readonly MantisReferenceCache<MantisReference> _projectLookup;
 
     private readonly MantisReferenceCache<LocalizedMantisReference> _reproducabilityLookup;
@@ -34,20 +36,21 @@
 
     public LookupCache()
     {
-      _statusLookup = new MantisReferenceCache<IssueStatus>();
-      _tagLookup = new MantisReferenceCache<MantisReference>();
-      _categoryLookup = new MantisReferenceCache<MantisReference>();
-      _versionLookup = new MantisReferenceCache<MantisReference>();
-      _userLookup = new MantisReferenceCache<User>();
-      _projectLookup = new MantisReferenceCache<MantisReference>();
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _viewStateLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _priorityLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _severityLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _accessLevelLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>();
-      _reproducabilityLookup = new MantisReferenceCache<LocalizedMantisReference>();
+      _profileLookup = new MantisReferenceCache<Profile>(this);
+      _statusLookup = new MantisReferenceCache<IssueStatus>(this);
+      _tagLookup = new MantisReferenceCache<MantisReference>(this);
+      _categoryLookup = new MantisReferenceCache<MantisReference>(this);
+      _versionLookup = new MantisReferenceCache<MantisReference>(this);
+      _userLookup = new MantisReferenceCache<User>(this);
+      _projectLookup = new MantisReferenceCache<MantisReference>(this);
+      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _viewStateLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _priorityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _severityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _accessLevelLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _reproducabilityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
     }
 
     #endregion
@@ -67,6 +70,11 @@
     public MantisReferenceCache<LocalizedMantisReference> Priority
     {
       get { return _priorityLookup; }
+    }
+
+    public MantisReferenceCache<Profile> Profile
+    {
+      get { return _profileLookup; }
     }
 
     public MantisReferenceCache<MantisReference> Project
