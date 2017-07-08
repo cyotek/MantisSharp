@@ -88,7 +88,9 @@ Currently the only supported feature of the MantisBT REST API is to return detai
 
 ## Credits
 
-* Uses Topten Software's utterly awesome [PetaJson](https://github.com/toptensoftware/PetaJson) in a not so awesome fashion.
+* The [MantisBT](https://mantisbt.org/) for giving access to the REST API
+* Topten Software for their utterly awesome [PetaJson](https://github.com/toptensoftware/PetaJson) which I'm using in a not so awesome fashion.
+* Graphics in the Browser sample are from the [Visual Studio Image Library](https://www.microsoft.com/en-us/download/details.aspx?id=35825).
 
 ## Further Reading
 

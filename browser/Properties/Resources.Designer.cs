@@ -61,6 +61,26 @@ namespace MantisSharp.Browser.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AccessLevel {
+            get {
+                object obj = ResourceManager.GetObject("AccessLevel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Connect {
+            get {
+                object obj = ResourceManager.GetObject("Connect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
         ////* Author: Nicolas Hery - http://nicolashery.com */
         ////* Version: 29d1c5bc36da364ad5aa86946d420b7bbc54a253 */
@@ -80,9 +100,9 @@ namespace MantisSharp.Browser.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap plug_connect {
+        internal static System.Drawing.Bitmap Language {
             get {
-                object obj = ResourceManager.GetObject("plug-connect", resourceCulture);
+                object obj = ResourceManager.GetObject("Language", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,6 +113,26 @@ namespace MantisSharp.Browser.Properties {
         internal static System.Drawing.Bitmap Refresh {
             get {
                 object obj = ResourceManager.GetObject("Refresh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User {
+            get {
+                object obj = ResourceManager.GetObject("User", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Version {
+            get {
+                object obj = ResourceManager.GetObject("Version", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -18,6 +18,8 @@ namespace MantisSharp
 
     private string _authorization;
 
+    private string _mantisVersion;
+
     #endregion
 
     #region Properties
@@ -26,6 +28,11 @@ namespace MantisSharp
     {
       get { return _authorization; }
       set { _authorization = value; }
+    }
+
+    public string MantisVersion
+    {
+      get { return _mantisVersion; }
     }
 
     #endregion
@@ -117,6 +124,8 @@ namespace MantisSharp
           }
 
           action(response);
+
+          this.UpdateVersion(response);
         }
         else
         {
@@ -174,6 +183,14 @@ namespace MantisSharp
         {
           action(reader);
         }
+      }
+    }
+
+    private void UpdateVersion(HttpWebResponse response)
+    {
+      if (_mantisVersion == null)
+      {
+        _mantisVersion = response.GetResponseHeader("X-Mantis-Version");
       }
     }
 

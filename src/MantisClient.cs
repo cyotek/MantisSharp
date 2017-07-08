@@ -78,6 +78,11 @@ namespace MantisSharp
       set { _baseUri = this.NormalizeUri(value); }
     }
 
+    public string MantisVersion
+    {
+      get { return _restClient?.MantisVersion; }
+    }
+
     #endregion
 
     #region Methods
@@ -232,9 +237,10 @@ namespace MantisSharp
                Name = props.GetString("name"),
                RealName = props.GetString("real_name"),
                Language = props.GetString("language"),
-               TimeZone = props.GetString("time_zone"),
+               TimeZone = props.GetString("timezone"),
                AccessLevel = props.GetReference("access_level", _lookupCache.AccessLevel),
-               Projects = props.GetReferences<MantisReferenceCollection, MantisReference>("projects", _lookupCache.Project)
+               Projects = props.GetReferences<MantisReferenceCollection, MantisReference>("projects", _lookupCache.Project),
+               EmailAddress = props.GetString("email")
              };
     }
 

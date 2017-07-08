@@ -449,11 +449,14 @@ namespace MantisSharp.Browser
       else
       {
         userNameToolStripStatusLabel.Text = _currentUser.Name;
-        realNameToolStripStatusLabel.Text = _currentUser.RealName;
-        timeZoneToolStripStatusLabel.Text = _currentUser.TimeZone;
-        languageToolStripStatusLabel.Text = _currentUser.Language;
         accessLevelToolStripStatusLabel.Text = _currentUser.AccessLevel?.Label;
+        versionToolStripStatusLabel.Text = _client.MantisVersion;
       }
+    }
+
+    private void userPropertiesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PropertiesDialog.ShowDialog(_currentUser);
     }
 
     #endregion

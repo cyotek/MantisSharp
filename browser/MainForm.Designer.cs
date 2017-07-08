@@ -49,6 +49,8 @@
       this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.userPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -58,10 +60,8 @@
       this.statusStrip1 = new System.Windows.Forms.StatusStrip();
       this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.userNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-      this.realNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-      this.languageToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-      this.timeZoneToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.accessLevelToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+      this.versionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).BeginInit();
       this.projectsSplitContainer.Panel1.SuspendLayout();
       this.projectsSplitContainer.Panel2.SuspendLayout();
@@ -224,6 +224,7 @@
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
@@ -243,7 +244,7 @@
       // 
       // connectToolStripMenuItem
       // 
-      this.connectToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.plug_connect;
+      this.connectToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Connect;
       this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
       this.connectToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
       this.connectToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
@@ -276,9 +277,24 @@
       this.refreshToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Refresh;
       this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
       this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
       this.refreshToolStripMenuItem.Text = "&Refresh";
       this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+      // 
+      // viewToolStripMenuItem
+      // 
+      this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userPropertiesToolStripMenuItem});
+      this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+      this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+      this.viewToolStripMenuItem.Text = "&View";
+      // 
+      // userPropertiesToolStripMenuItem
+      // 
+      this.userPropertiesToolStripMenuItem.Name = "userPropertiesToolStripMenuItem";
+      this.userPropertiesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+      this.userPropertiesToolStripMenuItem.Text = "&User Properties...";
+      this.userPropertiesToolStripMenuItem.Click += new System.EventHandler(this.userPropertiesToolStripMenuItem_Click);
       // 
       // helpToolStripMenuItem
       // 
@@ -310,7 +326,7 @@
       // connectToolStripButton
       // 
       this.connectToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.connectToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.plug_connect;
+      this.connectToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.Connect;
       this.connectToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.connectToolStripButton.Name = "connectToolStripButton";
       this.connectToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -337,10 +353,8 @@
       this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusToolStripStatusLabel,
             this.userNameToolStripStatusLabel,
-            this.realNameToolStripStatusLabel,
-            this.languageToolStripStatusLabel,
-            this.timeZoneToolStripStatusLabel,
-            this.accessLevelToolStripStatusLabel});
+            this.accessLevelToolStripStatusLabel,
+            this.versionToolStripStatusLabel});
       this.statusStrip1.Location = new System.Drawing.Point(0, 450);
       this.statusStrip1.Name = "statusStrip1";
       this.statusStrip1.Size = new System.Drawing.Size(922, 22);
@@ -350,34 +364,27 @@
       // statusToolStripStatusLabel
       // 
       this.statusToolStripStatusLabel.Name = "statusToolStripStatusLabel";
-      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(907, 17);
+      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(859, 17);
       this.statusToolStripStatusLabel.Spring = true;
       this.statusToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // userNameToolStripStatusLabel
       // 
+      this.userNameToolStripStatusLabel.Image = global::MantisSharp.Browser.Properties.Resources.User;
       this.userNameToolStripStatusLabel.Name = "userNameToolStripStatusLabel";
-      this.userNameToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-      // 
-      // realNameToolStripStatusLabel
-      // 
-      this.realNameToolStripStatusLabel.Name = "realNameToolStripStatusLabel";
-      this.realNameToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-      // 
-      // languageToolStripStatusLabel
-      // 
-      this.languageToolStripStatusLabel.Name = "languageToolStripStatusLabel";
-      this.languageToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-      // 
-      // timeZoneToolStripStatusLabel
-      // 
-      this.timeZoneToolStripStatusLabel.Name = "timeZoneToolStripStatusLabel";
-      this.timeZoneToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+      this.userNameToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
       // 
       // accessLevelToolStripStatusLabel
       // 
+      this.accessLevelToolStripStatusLabel.Image = global::MantisSharp.Browser.Properties.Resources.AccessLevel;
       this.accessLevelToolStripStatusLabel.Name = "accessLevelToolStripStatusLabel";
-      this.accessLevelToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+      this.accessLevelToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
+      // 
+      // versionToolStripStatusLabel
+      // 
+      this.versionToolStripStatusLabel.Image = global::MantisSharp.Browser.Properties.Resources.Version;
+      this.versionToolStripStatusLabel.Name = "versionToolStripStatusLabel";
+      this.versionToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
       // 
       // MainForm
       // 
@@ -437,9 +444,6 @@
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripStatusLabel statusToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel userNameToolStripStatusLabel;
-    private System.Windows.Forms.ToolStripStatusLabel realNameToolStripStatusLabel;
-    private System.Windows.Forms.ToolStripStatusLabel languageToolStripStatusLabel;
-    private System.Windows.Forms.ToolStripStatusLabel timeZoneToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel accessLevelToolStripStatusLabel;
     private System.Windows.Forms.SplitContainer attachmentsSplitContainer;
     private System.Windows.Forms.LinkLabel attachmentsLinkLabel;
@@ -450,6 +454,9 @@
     private System.Windows.Forms.ToolStripButton connectToolStripButton;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     private System.Windows.Forms.ToolStripButton refreshToolStripButton;
+    private System.Windows.Forms.ToolStripStatusLabel versionToolStripStatusLabel;
+    private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem userPropertiesToolStripMenuItem;
   }
 }
 
