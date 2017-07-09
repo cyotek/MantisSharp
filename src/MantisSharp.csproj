@@ -28,98 +28,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Category.generated.cs" />
-    <Compile Remove="ProjectCollection.generated.cs" />
-    <Compile Remove="Status.generated.cs" />
-    <Compile Remove="UserLookup.generated.cs" />
-    <Compile Remove="Version.generated.cs" />
-    <Compile Remove="ViewStateCollection.generated.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Category.generated.tt" />
-    <None Remove="KeyedCollection.ttinclude" />
     <None Remove="MantisSharp.net35.v3.ncrunchproject" />
     <None Remove="MantisSharp.net40.v3.ncrunchproject" />
     <None Remove="MantisSharp.net45.v3.ncrunchproject" />
     <None Remove="MantisSharp.net46.v3.ncrunchproject" />
     <None Remove="MantisSharp.netstandard1.3.v3.ncrunchproject" />
     <None Remove="MantisSharp_vs2015.v3.ncrunchproject" />
-    <None Remove="ProjectCollection.generated.tt" />
-    <None Remove="Status.generated.tt" />
-    <None Remove="UserLookup.generated.tt" />
-    <None Remove="Version.generated.tt" />
-    <None Remove="ViewStateCollection.generated.tt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Category.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Category.txt</LastGenOutput>
-    </None>
-    <None Update="Category.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Category.tt</DependentUpon>
-    </None>
-    <None Update="IssueStatus.generated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IssueStatus.generated.cs</LastGenOutput>
-    </None>
-    <None Update="IssueStatus.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>IssueStatus.txt</LastGenOutput>
-    </None>
-    <None Update="IssueStatus.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IssueStatus.tt</DependentUpon>
-    </None>
-    <None Update="TagCollection.generated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TagCollection.generated.txt</LastGenOutput>
-    </None>
-    <None Update="TagCollection.generated.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>TagCollection.generated.tt</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TagCollection.generated.cs</LastGenOutput>
-    </None>
-    <None Update="UserLookup.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UserLookup.txt</LastGenOutput>
-    </None>
-    <None Update="UserLookup.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>UserLookup.tt</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>UserLookup.cs</LastGenOutput>
-    </None>
-    <None Update="Version.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Version.txt</LastGenOutput>
-    </None>
-    <None Update="Version.txt">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Version.tt</DependentUpon>
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Version.cs</LastGenOutput>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="IssueStatus.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>IssueStatus.generated.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
 
 </Project>
