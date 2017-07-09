@@ -2,7 +2,7 @@
 
 namespace MantisSharp
 {
-  internal sealed class MantisReferenceCache<T>
+  internal sealed class LookupCache<T>
     where T : MantisReference, new()
   {
     #region Constants
@@ -17,7 +17,7 @@ namespace MantisSharp
 
     #region Constructors
 
-    public MantisReferenceCache(LookupCache owner)
+    public LookupCache(LookupCache owner)
     {
       _cache = new Dictionary<int, T>();
       _lock = new object();

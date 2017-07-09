@@ -14,7 +14,7 @@ namespace MantisSharp
 
     private string _possibleValues;
 
-    private LocalizedMantisReference _readAccessLevel;
+    private AccessLevel _readAccessLevel;
 
     private bool _requireOnClose;
 
@@ -36,7 +36,7 @@ namespace MantisSharp
 
     private string _validationExpression;
 
-    private LocalizedMantisReference _writeAccessLevel;
+    private AccessLevel _writeAccessLevel;
 
     #endregion
 
@@ -71,7 +71,7 @@ namespace MantisSharp
     }
 
     [Json("access_level_r")]
-    public LocalizedMantisReference ReadAccessLevel
+    public AccessLevel ReadAccessLevel
     {
       get { return _readAccessLevel; }
       internal set { _readAccessLevel = value; }
@@ -148,7 +148,7 @@ namespace MantisSharp
     }
 
     [Json("access_level_rw")]
-    public LocalizedMantisReference WriteAccessLevel
+    public AccessLevel WriteAccessLevel
     {
       get { return _writeAccessLevel; }
       internal set { _writeAccessLevel = value; }

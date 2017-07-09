@@ -36,6 +36,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessLevel.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Attachment.cs" />
     <Compile Include="AttachmentCollection.generated.cs">
@@ -57,10 +58,12 @@
     </Compile>
     <Compile Include="DeserializationUtilties.cs" />
     <Compile Include="Issue.cs" />
+    <Compile Include="IssuePriority.cs" />
+    <Compile Include="IssueSeverity.cs" />
     <Compile Include="LocalizedMantisReference.cs" />
     <Compile Include="LookupCache.cs" />
     <Compile Include="MantisReference.cs" />
-    <Compile Include="MantisReferenceCache`1.cs" />
+    <Compile Include="LookupCache`1.cs" />
     <Compile Include="MantisClient.cs" />
     <Compile Include="MantisReferenceCollection.cs" />
     <Compile Include="Note.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="PetaJson.cs" />
+    <Compile Include="ProjectStatus.cs" />
     <Compile Include="ProjectVersion.cs" />
     <Compile Include="ProjectVersionCollection.generated.cs">
       <AutoGen>True</AutoGen>
@@ -79,11 +83,20 @@
       <DependentUpon>ProjectVersionCollection.generated.tt</DependentUpon>
     </Compile>
     <Compile Include="QueryStringBuilder.cs" />
+    <Compile Include="IssueReproducability.cs" />
+    <Compile Include="IssueResolution.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="IssueStatus.cs" />
     <Compile Include="StringBuilderCache.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="TagCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TagCollection.generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="UserCollection.cs" />
+    <Compile Include="ViewState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\res\MantisSharp.snk">
@@ -123,6 +136,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProjectVersionCollection.generated.cs</LastGenOutput>
     </Content>
+    <None Include="TagCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TagCollection.generated.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

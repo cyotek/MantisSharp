@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace MantisSharp
 {
@@ -35,7 +34,7 @@ namespace MantisSharp
 
     private string _platform;
 
-    private LocalizedMantisReference _priority;
+    private IssuePriority _priority;
 
     private Profile _profile;
 
@@ -43,11 +42,11 @@ namespace MantisSharp
 
     private User _reporter;
 
-    private LocalizedMantisReference _reproducibility;
+    private IssueReproducability _reproducibility;
 
-    private LocalizedMantisReference _resolution;
+    private IssueResolution _resolution;
 
-    private LocalizedMantisReference _severity;
+    private IssueSeverity _severity;
 
     private IssueStatus _status;
 
@@ -57,13 +56,13 @@ namespace MantisSharp
 
     private string _summary;
 
-    private MantisReferenceCollection _tags;
+    private TagCollection _tags;
 
     private MantisReference _targetVersion;
 
     private MantisReference _version;
 
-    private LocalizedMantisReference _viewState;
+    private ViewState _viewState;
 
     #endregion
 
@@ -111,7 +110,6 @@ namespace MantisSharp
       internal set { _fixVersion = value; }
     }
 
-    [Browsable(false)]
     public int Id
     {
       get { return _id; }
@@ -154,7 +152,7 @@ namespace MantisSharp
       internal set { _platform = value; }
     }
 
-    public LocalizedMantisReference Priority
+    public IssuePriority Priority
     {
       get { return _priority; }
       internal set { _priority = value; }
@@ -178,19 +176,19 @@ namespace MantisSharp
       internal set { _reporter = value; }
     }
 
-    public LocalizedMantisReference Reproducibility
+    public IssueReproducability Reproducibility
     {
       get { return _reproducibility; }
       internal set { _reproducibility = value; }
     }
 
-    public LocalizedMantisReference Resolution
+    public IssueResolution Resolution
     {
       get { return _resolution; }
       internal set { _resolution = value; }
     }
 
-    public LocalizedMantisReference Severity
+    public IssueSeverity Severity
     {
       get { return _severity; }
       internal set { _severity = value; }
@@ -220,7 +218,7 @@ namespace MantisSharp
       internal set { _summary = value; }
     }
 
-    public MantisReferenceCollection Tags
+    public TagCollection Tags
     {
       get { return _tags; }
       internal set { _tags = value; }
@@ -238,7 +236,7 @@ namespace MantisSharp
       internal set { _version = value; }
     }
 
-    public LocalizedMantisReference ViewState
+    public ViewState ViewState
     {
       get { return _viewState; }
       internal set { _viewState = value; }

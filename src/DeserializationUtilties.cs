@@ -154,7 +154,7 @@ namespace MantisSharp
       return props.TryGetValue(key, out value) ? Convert.ToInt32(value) : 0;
     }
 
-    public static T GetReference<T>(this Dictionary<string, object> props, string key, MantisReferenceCache<T> cache)
+    public static T GetReference<T>(this Dictionary<string, object> props, string key, LookupCache<T> cache)
       where T : MantisReference, new()
     {
       T result;
@@ -165,7 +165,7 @@ namespace MantisSharp
       return result;
     }
 
-    public static TCollection GetReferences<TCollection, TChild>(this Dictionary<string, object> props, string key, MantisReferenceCache<TChild> cache)
+    public static TCollection GetReferences<TCollection, TChild>(this Dictionary<string, object> props, string key, LookupCache<TChild> cache)
       where TCollection : class, ICollection<TChild>, new()
       where TChild : MantisReference, new()
     {

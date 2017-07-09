@@ -19,7 +19,7 @@ namespace MantisSharp
 
     private string _type;
 
-    private LocalizedMantisReference _viewState;
+    private ViewState _viewState;
 
     #endregion
 
@@ -68,7 +68,7 @@ namespace MantisSharp
     }
 
     [Json("view_state")]
-    public LocalizedMantisReference ViewState
+    public ViewState ViewState
     {
       get { return _viewState; }
       internal set { _viewState = value; }

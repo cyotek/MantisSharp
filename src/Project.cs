@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace MantisSharp
+﻿namespace MantisSharp
 {
   public class Project
   {
@@ -20,11 +18,11 @@ namespace MantisSharp
 
     private string _name;
 
-    private LocalizedMantisReference _status;
+    private ProjectStatus _status;
 
     private ProjectVersionCollection _versions;
 
-    private LocalizedMantisReference _viewState;
+    private ViewState _viewState;
 
     #endregion
 
@@ -60,7 +58,6 @@ namespace MantisSharp
       internal set { _enabled = value; }
     }
 
-    [Browsable(false)]
     public int Id
     {
       get { return _id; }
@@ -73,7 +70,7 @@ namespace MantisSharp
       internal set { _name = value; }
     }
 
-    public LocalizedMantisReference Status
+    public ProjectStatus Status
     {
       get { return _status; }
       internal set { _status = value; }
@@ -85,7 +82,7 @@ namespace MantisSharp
       internal set { _versions = value; }
     }
 
-    public LocalizedMantisReference ViewState
+    public ViewState ViewState
     {
       get { return _viewState; }
       internal set { _viewState = value; }

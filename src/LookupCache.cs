@@ -4,33 +4,33 @@
   {
     #region Constants
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _accessLevelLookup;
+    private readonly LookupCache<AccessLevel> _accessLevelLookup;
 
-    private readonly MantisReferenceCache<MantisReference> _categoryLookup;
+    private readonly LookupCache<MantisReference> _categoryLookup;
 
-    private readonly MantisReferenceCache<IssueStatus> _issueStatusLookup;
+    private readonly LookupCache<IssueStatus> _issueStatusLookup;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _priorityLookup;
+    private readonly LookupCache<IssuePriority> _priorityLookup;
 
-    private readonly MantisReferenceCache<Profile> _profileLookup;
+    private readonly LookupCache<Profile> _profileLookup;
 
-    private readonly MantisReferenceCache<MantisReference> _projectLookup;
+    private readonly LookupCache<MantisReference> _projectLookup;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _projectStatus;
+    private readonly LookupCache<ProjectStatus> _projectStatus;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _reproducabilityLookup;
+    private readonly LookupCache<IssueReproducability> _reproducabilityLookup;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _resolutionLookup;
+    private readonly LookupCache<IssueResolution> _resolutionLookup;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _severityLookup;
+    private readonly LookupCache<IssueSeverity> _severityLookup;
 
-    private readonly MantisReferenceCache<MantisReference> _tagLookup;
+    private readonly LookupCache<Tag> _tagLookup;
 
-    private readonly MantisReferenceCache<User> _userLookup;
+    private readonly LookupCache<User> _userLookup;
 
-    private readonly MantisReferenceCache<MantisReference> _versionLookup;
+    private readonly LookupCache<MantisReference> _versionLookup;
 
-    private readonly MantisReferenceCache<LocalizedMantisReference> _viewStateLookup;
+    private readonly LookupCache<ViewState> _viewStateLookup;
 
     #endregion
 
@@ -38,94 +38,92 @@
 
     public LookupCache()
     {
-      _profileLookup = new MantisReferenceCache<Profile>(this);
-      _issueStatusLookup = new MantisReferenceCache<IssueStatus>(this);
-      _tagLookup = new MantisReferenceCache<MantisReference>(this);
-      _categoryLookup = new MantisReferenceCache<MantisReference>(this);
-      _versionLookup = new MantisReferenceCache<MantisReference>(this);
-      _userLookup = new MantisReferenceCache<User>(this);
-      _projectLookup = new MantisReferenceCache<MantisReference>(this);
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _viewStateLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _priorityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _severityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _accessLevelLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _reproducabilityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
-      _projectStatus = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _accessLevelLookup = new LookupCache<AccessLevel>(this);
+      _categoryLookup = new LookupCache<MantisReference>(this);
+      _issueStatusLookup = new LookupCache<IssueStatus>(this);
+      _priorityLookup = new LookupCache<IssuePriority>(this);
+      _profileLookup = new LookupCache<Profile>(this);
+      _projectLookup = new LookupCache<MantisReference>(this);
+      _projectStatus = new LookupCache<ProjectStatus>(this);
+      _reproducabilityLookup = new LookupCache<IssueReproducability>(this);
+      _resolutionLookup = new LookupCache<IssueResolution>(this);
+      _severityLookup = new LookupCache<IssueSeverity>(this);
+      _tagLookup = new LookupCache<Tag>(this);
+      _userLookup = new LookupCache<User>(this);
+      _versionLookup = new LookupCache<MantisReference>(this);
+      _viewStateLookup = new LookupCache<ViewState>(this);
     }
 
     #endregion
 
     #region Properties
 
-    public MantisReferenceCache<LocalizedMantisReference> AccessLevel
+    public LookupCache<AccessLevel> AccessLevel
     {
       get { return _accessLevelLookup; }
     }
 
-    public MantisReferenceCache<MantisReference> Category
+    public LookupCache<MantisReference> Category
     {
       get { return _categoryLookup; }
     }
 
-    public MantisReferenceCache<IssueStatus> IssueStatus
+    public LookupCache<IssueStatus> IssueStatus
     {
       get { return _issueStatusLookup; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> Priority
+    public LookupCache<IssuePriority> Priority
     {
       get { return _priorityLookup; }
     }
 
-    public MantisReferenceCache<Profile> Profile
+    public LookupCache<Profile> Profile
     {
       get { return _profileLookup; }
     }
 
-    public MantisReferenceCache<MantisReference> Project
+    public LookupCache<MantisReference> Project
     {
       get { return _projectLookup; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> ProjectStatus
+    public LookupCache<ProjectStatus> ProjectStatus
     {
       get { return _projectStatus; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> Reproducability
+    public LookupCache<IssueReproducability> Reproducability
     {
       get { return _reproducabilityLookup; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> Resolution
+    public LookupCache<IssueResolution> Resolution
     {
       get { return _resolutionLookup; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> Severity
+    public LookupCache<IssueSeverity> Severity
     {
       get { return _severityLookup; }
     }
 
-    public MantisReferenceCache<MantisReference> Tag
+    public LookupCache<Tag> Tag
     {
       get { return _tagLookup; }
     }
 
-    public MantisReferenceCache<User> User
+    public LookupCache<User> User
     {
       get { return _userLookup; }
     }
 
-    public MantisReferenceCache<MantisReference> Version
+    public LookupCache<MantisReference> Version
     {
       get { return _versionLookup; }
     }
 
-    public MantisReferenceCache<LocalizedMantisReference> ViewState
+    public LookupCache<ViewState> ViewState
     {
       get { return _viewStateLookup; }
     }

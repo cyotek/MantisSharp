@@ -3,6 +3,7 @@ using PetaJson;
 
 namespace MantisSharp
 {
+  [TypeConverter(typeof(ExpandableObjectConverter))]
   public class MantisReference
   {
     #region Fields
@@ -16,7 +17,6 @@ namespace MantisSharp
     #region Properties
 
     [Json("id")]
-    [Browsable(false)]
     public int Id
     {
       get { return _id; }

@@ -212,7 +212,7 @@ namespace MantisSharp
                Sticky = props.GetBoolean("sticky"),
                Created = props.GetDateTime("created_at"),
                LastModified = props.GetDateTime("updated_at"),
-               Tags = props.GetReferences<MantisReferenceCollection, MantisReference>("tags", _lookupCache.Tag),
+               Tags = props.GetReferences<TagCollection, Tag>("tags", _lookupCache.Tag),
                Attachments = props.GetChildren<AttachmentCollection, Attachment>("attachments", _lookupCache),
                Notes = props.GetChildren<NoteCollection, Note>("notes", _lookupCache),
                Monitors = props.GetChildren<UserCollection, User>("monitors", _lookupCache),
