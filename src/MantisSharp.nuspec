@@ -6,6 +6,8 @@
         <title>MantisSharp</title>
         <authors>Cyotek</authors>
         <owners>Cyotek</owners>
+        <projectUrl>https://mantissharp.net</projectUrl>
+        <licenseUrl>https://raw.githubusercontent.com/cyotek/MantisSharp/master/LICENSE.txt</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A simple client for working with MantisBT via its REST API.</description>
         <summary>REST client for working with MantisBT</summary>
