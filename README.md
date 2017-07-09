@@ -86,7 +86,86 @@ The following table lists how much of the REST API is currently covered. (There 
 | `/lang`     | n/a    | No  | n/a  | Returns no data for my instance.                                 |
 | `/projects` | n/a    | Yes | n/a  |                                                                  |
 | `/users`    | n/a    | Yes | n/a  | Underlying API only supports returning data for the current user |
+
+## ASP.NET MVC Example
+
+This is an abridged version of code I used to produce a roadmap from an ASP.NET application.
+
+### Controller
+
+    Project project;
+    Issue[] issues;
+    MantisClient client;
+
+    client = new MantisClient(SiteConfiguration.MantisBaseUri, SiteConfiguration.MantisApiKey);
+
+    project = client.GetProject(product.MantisProjectId);
+    issues = client.GetIssues(project).ToArray();
+
+    return this.View(new ProductRoadmapModel
+    {
+      Product = product,
+      Project = project,
+      Issues = issues
+    });
     
+### View
+
+    @using MantisSharp
+    @model ProductRoadmapModel
+    @{
+      Product product;
+      Project project;
+      Issue[] issues;
+    
+      product = Model.Product;
+      project = Model.Project;
+      issues = Model.Issues;
+    }
+    
+    @if (project != null)
+    {
+      ProjectVersion[] versions;
+    
+      versions = project.Versions.Where(version => !version.Released).OrderBy(version => version.Timestamp).ToArray();
+    
+      if (versions.Length > 0)
+      {
+        foreach (ProjectVersion version in versions)
+        {
+          Issue[] versionIssues;
+    
+          versionIssues = issues.Where(issue => issue.TargetVersion != null && issue.TargetVersion.Id == version.Id).ToArray();
+    
+          @Html.Header(2, version.Name)
+    
+          if (versionIssues.Length > 0)
+          {
+            <ul class="list-unstyled">
+              @foreach (Issue issue in versionIssues)
+              {
+                <li>
+                  <i class="fa fa-square fa-status-box" style="color: @issue.Status.Color" title="@issue.Status.Label"></i>
+                  <span class="label-light">[@issue.Category.Name]</span> @issue.Summary
+                </li>
+              }
+            </ul>
+          }
+          else
+          {
+            <p>No issues found.</p>
+          }
+        }
+      }
+
+      else
+      {
+        <p>There are no pending versions available to display.</p>
+      }
+    }
+
+![Example screenshot from the above derived code](mantissharp-mvc-example.png)
+
 ## Todo
 
 [ ] Documentation  
