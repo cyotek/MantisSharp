@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class CategoryCollection : ICollection<MantisReference>
+  public class CategoryCollection : ICollection<Category>
   {
     #region Constants
 
@@ -23,7 +23,7 @@ namespace MantisSharp
 
     private readonly Dictionary<string, int> _indexesByName;
 
-    private readonly IList<MantisReference> _items;
+    private readonly IList<Category> _items;
 
     #endregion
 
@@ -33,14 +33,14 @@ namespace MantisSharp
     {
       _indexesByName = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
       _indexesById = new Dictionary<int, int>();
-      _items = new List<MantisReference>();
+      _items = new List<Category>();
     }
 
     #endregion
 
     #region Properties
 
-    public MantisReference this[string key]
+    public Category this[string key]
     {
       get
       {
@@ -55,7 +55,7 @@ namespace MantisSharp
       }
     }
 
-    public MantisReference this[int key]
+    public Category this[int key]
     {
       get
       {
@@ -84,7 +84,7 @@ namespace MantisSharp
       return _indexesById.ContainsKey(key);
     }
 
-    public bool TryGetValue(string key, out MantisReference value)
+    public bool TryGetValue(string key, out Category value)
     {
       int index;
 
@@ -101,7 +101,7 @@ namespace MantisSharp
       return index != -1;
     }
 
-    public bool TryGetValue(int key, out MantisReference value)
+    public bool TryGetValue(int key, out Category value)
     {
       int index;
 
@@ -118,7 +118,7 @@ namespace MantisSharp
       return index != -1;
     }
 
-    internal void Add(MantisReference item)
+    internal void Add(Category item)
     {
       string name;
       int index;
@@ -159,7 +159,7 @@ namespace MantisSharp
       _items.Clear();
     }
 
-    internal bool Remove(MantisReference item)
+    internal bool Remove(Category item)
     {
       return this.Remove(item.Name);
     }
@@ -183,29 +183,29 @@ namespace MantisSharp
 
     #endregion
 
-    #region ICollection<MantisReference> Interface
+    #region ICollection<Category> Interface
 
-    public bool Contains(MantisReference item)
+    public bool Contains(Category item)
     {
       return this.ContainsKey(item.Id);
     }
 
-    public void CopyTo(MantisReference[] array, int arrayIndex)
+    public void CopyTo(Category[] array, int arrayIndex)
     {
       _items.CopyTo(array, arrayIndex);
     }
 
-    public IEnumerator<MantisReference> GetEnumerator()
+    public IEnumerator<Category> GetEnumerator()
     {
       return _items.GetEnumerator();
     }
 
-    void ICollection<MantisReference>.Add(MantisReference item)
+    void ICollection<Category>.Add(Category item)
     {
       this.Add(item);
     }
 
-    void ICollection<MantisReference>.Clear()
+    void ICollection<Category>.Clear()
     {
       this.Clear();
     }
@@ -215,7 +215,7 @@ namespace MantisSharp
       return this.GetEnumerator();
     }
 
-    bool ICollection<MantisReference>.Remove(MantisReference item)
+    bool ICollection<Category>.Remove(Category item)
     {
       return this.Remove(item);
     }
@@ -225,7 +225,7 @@ namespace MantisSharp
       get { return _items.Count; }
     }
 
-    bool ICollection<MantisReference>.IsReadOnly
+    bool ICollection<Category>.IsReadOnly
     {
       get { return false; }
     }

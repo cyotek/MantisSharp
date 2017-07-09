@@ -1,11 +1,11 @@
 ﻿<#@ output extension=".cs" #>
 <#
-  string itemType;
-  string className;
-  string keyName;
+    string itemType;
+    string className;
+    string keyName;
 
-  className = "AttachmentCollection";
-  itemType = "Attachment";
-  keyName = "FileName";
-#>
+    className = "AttachmentCollection";
+    itemType = "Attachment";
+    keyName = "FileName";
+    #>
 <#@ include file="Collection.ttinclude" #>

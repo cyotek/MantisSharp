@@ -43,10 +43,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AttachmentCollection.generated.tt</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs" />
     <Compile Include="CategoryCollection.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CategoryCollection.generated.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomField.cs" />
+    <Compile Include="CustomFieldCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomFieldCollection.generated.tt</DependentUpon>
     </Compile>
     <Compile Include="DeserializationUtilties.cs" />
     <Compile Include="Issue.cs" />
@@ -65,6 +72,12 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="PetaJson.cs" />
+    <Compile Include="ProjectVersion.cs" />
+    <Compile Include="ProjectVersionCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectVersionCollection.generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="QueryStringBuilder.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="IssueStatus.cs" />
@@ -98,6 +111,18 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NoteCollection.generated.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CustomFieldCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CustomFieldCollection.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectVersionCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProjectVersionCollection.generated.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

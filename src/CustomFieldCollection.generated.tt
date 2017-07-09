@@ -4,8 +4,8 @@
     string className;
     string keyName;
 
-    className = "CategoryCollection";
-    itemType = "Category";
+    className = "CustomFieldCollection";
+    itemType = "CustomField";
     keyName = "Name";
     #>
 <#@ include file="Collection.ttinclude" #>

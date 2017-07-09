@@ -8,19 +8,21 @@
 
     private readonly MantisReferenceCache<MantisReference> _categoryLookup;
 
+    private readonly MantisReferenceCache<IssueStatus> _issueStatusLookup;
+
     private readonly MantisReferenceCache<LocalizedMantisReference> _priorityLookup;
 
     private readonly MantisReferenceCache<Profile> _profileLookup;
 
     private readonly MantisReferenceCache<MantisReference> _projectLookup;
 
+    private readonly MantisReferenceCache<LocalizedMantisReference> _projectStatus;
+
     private readonly MantisReferenceCache<LocalizedMantisReference> _reproducabilityLookup;
 
     private readonly MantisReferenceCache<LocalizedMantisReference> _resolutionLookup;
 
     private readonly MantisReferenceCache<LocalizedMantisReference> _severityLookup;
-
-    private readonly MantisReferenceCache<IssueStatus> _statusLookup;
 
     private readonly MantisReferenceCache<MantisReference> _tagLookup;
 
@@ -37,7 +39,7 @@
     public LookupCache()
     {
       _profileLookup = new MantisReferenceCache<Profile>(this);
-      _statusLookup = new MantisReferenceCache<IssueStatus>(this);
+      _issueStatusLookup = new MantisReferenceCache<IssueStatus>(this);
       _tagLookup = new MantisReferenceCache<MantisReference>(this);
       _categoryLookup = new MantisReferenceCache<MantisReference>(this);
       _versionLookup = new MantisReferenceCache<MantisReference>(this);
@@ -51,6 +53,7 @@
       _accessLevelLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
       _resolutionLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
       _reproducabilityLookup = new MantisReferenceCache<LocalizedMantisReference>(this);
+      _projectStatus = new MantisReferenceCache<LocalizedMantisReference>(this);
     }
 
     #endregion
@@ -65,6 +68,11 @@
     public MantisReferenceCache<MantisReference> Category
     {
       get { return _categoryLookup; }
+    }
+
+    public MantisReferenceCache<IssueStatus> IssueStatus
+    {
+      get { return _issueStatusLookup; }
     }
 
     public MantisReferenceCache<LocalizedMantisReference> Priority
@@ -82,6 +90,11 @@
       get { return _projectLookup; }
     }
 
+    public MantisReferenceCache<LocalizedMantisReference> ProjectStatus
+    {
+      get { return _projectStatus; }
+    }
+
     public MantisReferenceCache<LocalizedMantisReference> Reproducability
     {
       get { return _reproducabilityLookup; }
@@ -95,11 +108,6 @@
     public MantisReferenceCache<LocalizedMantisReference> Severity
     {
       get { return _severityLookup; }
-    }
-
-    public MantisReferenceCache<IssueStatus> Status
-    {
-      get { return _statusLookup; }
     }
 
     public MantisReferenceCache<MantisReference> Tag

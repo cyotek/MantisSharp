@@ -1,11 +1,11 @@
 ﻿<#@ output extension=".cs" #>
 <#
-  string itemType;
-  string className;
-  string keyName;
+    string itemType;
+    string className;
+    string keyName;
 
-  className = "NoteCollection";
-  itemType = "Note";
-  keyName = null;
-#>
+    className = "NoteCollection";
+    itemType = "Note";
+    keyName = null;
+    #>
 <#@ include file="Collection.ttinclude" #>

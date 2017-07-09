@@ -6,6 +6,12 @@ namespace MantisSharp
   {
     #region Fields
 
+    private LocalizedMantisReference _accessLevel;
+
+    private CategoryCollection _categories;
+
+    private CustomFieldCollection _customFields;
+
     private string _description;
 
     private bool _enabled;
@@ -14,9 +20,33 @@ namespace MantisSharp
 
     private string _name;
 
+    private LocalizedMantisReference _status;
+
+    private ProjectVersionCollection _versions;
+
+    private LocalizedMantisReference _viewState;
+
     #endregion
 
     #region Properties
+
+    public LocalizedMantisReference AccessLevel
+    {
+      get { return _accessLevel; }
+      internal set { _accessLevel = value; }
+    }
+
+    public CategoryCollection Categories
+    {
+      get { return _categories; }
+      internal set { _categories = value; }
+    }
+
+    public CustomFieldCollection CustomFields
+    {
+      get { return _customFields; }
+      internal set { _customFields = value; }
+    }
 
     public string Description
     {
@@ -41,6 +71,24 @@ namespace MantisSharp
     {
       get { return _name; }
       internal set { _name = value; }
+    }
+
+    public LocalizedMantisReference Status
+    {
+      get { return _status; }
+      internal set { _status = value; }
+    }
+
+    public ProjectVersionCollection Versions
+    {
+      get { return _versions; }
+      internal set { _versions = value; }
+    }
+
+    public LocalizedMantisReference ViewState
+    {
+      get { return _viewState; }
+      internal set { _viewState = value; }
     }
 
     #endregion

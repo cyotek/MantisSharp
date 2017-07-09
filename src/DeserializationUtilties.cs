@@ -54,6 +54,13 @@ namespace MantisSharp
                   case "view_state":
                     value = cache.ViewState.Get(childProps);
                     break;
+                  case "project":
+                    value = cache.Project.Get(childProps);
+                    break;
+                  case "access_level_r":
+                  case "access_level_rw":
+                    value = cache.AccessLevel.Get(childProps);
+                    break;
                   default: throw new NotImplementedException("Property '" + key + "' not supported.");
                 }
               }

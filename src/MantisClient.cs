@@ -202,7 +202,7 @@ namespace MantisSharp
                Category = props.GetReference("category", _lookupCache.Category),
                Reporter = props.GetReference("reporter", _lookupCache.User),
                AssignedTo = props.GetReference("handler", _lookupCache.User),
-               Status = props.GetReference("status", _lookupCache.Status),
+               Status = props.GetReference("status", _lookupCache.IssueStatus),
                Project = props.GetReference("project", _lookupCache.Project),
                Resolution = props.GetReference("resolution", _lookupCache.Resolution),
                ViewState = props.GetReference("view_state", _lookupCache.ViewState),
@@ -230,7 +230,13 @@ namespace MantisSharp
                Id = props.GetInteger("id"),
                Name = props.GetString("name"),
                Description = props.GetString("description"),
-               Enabled = props.GetBoolean("enabled")
+               Enabled = props.GetBoolean("enabled"),
+               Status = props.GetReference("status", _lookupCache.ProjectStatus),
+               AccessLevel = props.GetReference("access_level", _lookupCache.AccessLevel),
+               ViewState = props.GetReference("view_state", _lookupCache.ViewState),
+               CustomFields = props.GetChildren<CustomFieldCollection, CustomField>("custom_fields", _lookupCache),
+               Versions = props.GetChildren<ProjectVersionCollection, ProjectVersion>("versions", _lookupCache),
+               Categories = props.GetChildren<CategoryCollection, Category>("categories", _lookupCache)
              };
     }
 
