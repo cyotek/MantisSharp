@@ -17,6 +17,13 @@ namespace MantisSharp.Browser
       propertyGrid.SelectedObject = item;
     }
 
+    protected override void OnLoad(EventArgs e)
+    {
+      this.MinimumSize = this.Size;
+
+      base.OnLoad(e);
+    }
+
     #endregion
 
     #region Static Methods

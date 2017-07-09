@@ -64,6 +64,7 @@
       this.ClientSize = new System.Drawing.Size(459, 416);
       this.Controls.Add(this.closeButton);
       this.Controls.Add(this.propertyGrid);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
       this.Name = "PropertiesDialog";
       this.Text = "Properties";
       this.ResumeLayout(false);
