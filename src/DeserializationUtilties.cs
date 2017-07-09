@@ -45,23 +45,26 @@ namespace MantisSharp
 
                 childProps = (Dictionary<string, object>)value;
 
-                switch (key)
+                if (type == typeof(User))
                 {
-                  case "reporter":
-                  case "user":
-                    value = cache.User.Get(childProps);
-                    break;
-                  case "view_state":
-                    value = cache.ViewState.Get(childProps);
-                    break;
-                  case "project":
-                    value = cache.Project.Get(childProps);
-                    break;
-                  case "access_level_r":
-                  case "access_level_rw":
-                    value = cache.AccessLevel.Get(childProps);
-                    break;
-                  default: throw new NotImplementedException("Property '" + key + "' not supported.");
+                  value = cache.User.Get(childProps);
+                }
+                else if (type == typeof(ViewState))
+                {
+                  value = cache.ViewState.Get(childProps);
+                }
+                else if (type == typeof(AccessLevel))
+                {
+                  value = cache.AccessLevel.Get(childProps);
+                }
+                else if (key == "project")
+                {
+                  // HACK: Using common "Reference" type so can't tell the different
+                  value = cache.Project.Get(childProps);
+                }
+                else
+                {
+                  throw new NotImplementedException("Property '" + key + "' not supported.");
                 }
               }
               else
