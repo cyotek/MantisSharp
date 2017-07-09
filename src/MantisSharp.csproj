@@ -10,7 +10,7 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Authors>Cyotek</Authors>
+    <!--<Authors>Cyotek</Authors>
     <PackageTags>mantisbt, rest</PackageTags>
     <PackageVersion>0.0.1-alpha</PackageVersion>
     <PackageId>MantisSharp</PackageId>
@@ -18,12 +18,16 @@
     <Copyright>Copyright © 2017 Cyotek Ltd. All Rights Reserved.</Copyright>
     <PackageProjectUrl>https://mantissharp.net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cyotek/MantisSharp</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <RepositoryType>git</RepositoryType>-->
   </PropertyGroup>
 
   <!-- 3.5 Specific -->
   <PropertyGroup Condition=" '$(TargetFrameworkVersion)' == 'v3.5' ">
     <DefineConstants>$(DefineConstants);PETAJSON_NO_EMIT;</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>bin\Release\$(TargetFramework)\MantisSharp.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

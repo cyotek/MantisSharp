@@ -14,7 +14,8 @@ rem CALL     signcmd src\bin\Release\net47\MantisSharp.dll
 
 IF NOT EXIST nuget MKDIR nuget
 
-%msbuild15exe% src\MantisSharp.csproj /p:Configuration=Release /verbosity:minimal /nologo /m /t:Pack /p:PackageOutputPath="%~dp0nuget"
+%nugetexe% pack src\MantisSharp.nuspec -BasePath "%~dp0src" -OutputDirectory "%~dp0nuget" -Verbosity detailed -NonInteractive
+rem %msbuild15exe% src\MantisSharp.csproj /p:Configuration=Release /verbosity:minimal /nologo /m /t:Pack /p:PackageOutputPath="%~dp0nuget"
 rem /p:PackageVersion=0.0.2
 rem /p:NuspecFile=MantisSharp.nuspec
 
