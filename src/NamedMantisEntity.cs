@@ -2,7 +2,7 @@
 
 namespace MantisSharp
 {
-  public class NamedMantisEntity : MantisEntity
+  public /* abstract */ class NamedMantisEntity : MantisEntity
   {
     #region Fields
 
