@@ -12,7 +12,7 @@ namespace MantisSharp
 
     private string _language;
 
-    private MantisReferenceCollection _projects;
+    private ReferenceCollection _projects;
 
     private string _realName;
 
@@ -44,7 +44,7 @@ namespace MantisSharp
     }
 
     [Json("projects")]
-    public MantisReferenceCollection Projects
+    public ReferenceCollection Projects
     {
       get { return _projects; }
       internal set { _projects = value; }

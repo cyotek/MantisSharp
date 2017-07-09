@@ -66,7 +66,6 @@
     <Compile Include="NamedMantisEntity.cs" />
     <Compile Include="LookupCache`1.cs" />
     <Compile Include="MantisClient.cs" />
-    <Compile Include="MantisReferenceCollection.cs" />
     <Compile Include="Note.cs" />
     <Compile Include="NoteCollection.generated.cs">
       <AutoGen>True</AutoGen>
@@ -76,6 +75,12 @@
     <Compile Include="Profile.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="PetaJson.cs" />
+    <Compile Include="Reference.cs" />
+    <Compile Include="ReferenceCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferenceCollection.generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProjectStatus.cs" />
     <Compile Include="ProjectVersion.cs" />
     <Compile Include="ProjectVersionCollection.generated.cs">
@@ -133,10 +138,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ProjectVersionCollection.generated.tt">
+    <Content Include="ReferenceCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ReferenceCollection.generated.cs</LastGenOutput>
+    </Content>
+    <None Include="ProjectVersionCollection.generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProjectVersionCollection.generated.cs</LastGenOutput>
-    </Content>
+    </None>
     <None Include="TagCollection.generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TagCollection.generated.cs</LastGenOutput>

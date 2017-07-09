@@ -2,13 +2,13 @@
 
 namespace MantisSharp
 {
-  public class ViewState : NamedMantisEntity, IEquatable<ViewState>
+  public class Reference : NamedMantisEntity, IEquatable<Reference>
   {
     #region Methods
 
     public override bool Equals(object obj)
     {
-      return !ReferenceEquals(null, obj) && (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() && this.Equals((ViewState)obj));
+      return !ReferenceEquals(null, obj) && (ReferenceEquals(this, obj) || obj.GetType() == this.GetType() && this.Equals((Reference)obj));
     }
 
     public override int GetHashCode()
@@ -26,9 +26,9 @@ namespace MantisSharp
 
     #endregion
 
-    #region IEquatable<ViewState> Interface
+    #region IEquatable<ProjectReference> Interface
 
-    public bool Equals(ViewState other)
+    public bool Equals(Reference other)
     {
       return !ReferenceEquals(null, other) && (ReferenceEquals(this, other) || this.Id == other.Id && string.Equals(this.Name, other.Name));
     }

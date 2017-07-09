@@ -250,7 +250,7 @@ namespace MantisSharp
                Language = props.GetString("language"),
                TimeZone = props.GetString("timezone"),
                AccessLevel = props.GetReference("access_level", _lookupCache.AccessLevel),
-               Projects = props.GetReferences<MantisReferenceCollection, NamedMantisEntity>("projects", _lookupCache.Project),
+               Projects = props.GetReferences<ReferenceCollection, Reference>("projects", _lookupCache.Project),
                EmailAddress = props.GetString("email")
              };
     }

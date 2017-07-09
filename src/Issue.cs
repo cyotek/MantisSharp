@@ -12,13 +12,13 @@ namespace MantisSharp
 
     private AttachmentCollection _attachments;
 
-    private NamedMantisEntity _category;
+    private Reference _category;
 
     private DateTime _created;
 
     private string _description;
 
-    private NamedMantisEntity _fixVersion;
+    private Reference _fixVersion;
 
     private DateTime _lastModified;
 
@@ -36,7 +36,7 @@ namespace MantisSharp
 
     private Profile _profile;
 
-    private NamedMantisEntity _project;
+    private Reference _project;
 
     private User _reporter;
 
@@ -56,9 +56,9 @@ namespace MantisSharp
 
     private TagCollection _tags;
 
-    private NamedMantisEntity _targetVersion;
+    private Reference _targetVersion;
 
-    private NamedMantisEntity _version;
+    private Reference _version;
 
     private ViewState _viewState;
 
@@ -84,7 +84,7 @@ namespace MantisSharp
       internal set { _attachments = value; }
     }
 
-    public NamedMantisEntity Category
+    public Reference Category
     {
       get { return _category; }
       internal set { _category = value; }
@@ -102,7 +102,7 @@ namespace MantisSharp
       internal set { _description = value; }
     }
 
-    public NamedMantisEntity FixVersion
+    public Reference FixVersion
     {
       get { return _fixVersion; }
       internal set { _fixVersion = value; }
@@ -156,7 +156,7 @@ namespace MantisSharp
       set { _profile = value; }
     }
 
-    public NamedMantisEntity Project
+    public Reference Project
     {
       get { return _project; }
       internal set { _project = value; }
@@ -216,13 +216,13 @@ namespace MantisSharp
       internal set { _tags = value; }
     }
 
-    public NamedMantisEntity TargetVersion
+    public Reference TargetVersion
     {
       get { return _targetVersion; }
       internal set { _targetVersion = value; }
     }
 
-    public NamedMantisEntity Version
+    public Reference Version
     {
       get { return _version; }
       internal set { _version = value; }
