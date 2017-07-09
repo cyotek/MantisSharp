@@ -1,7 +1,7 @@
 ﻿<#
-    bool hasStringKeyComponent;
+  bool hasStringKeyComponent;
 
-    hasStringKeyComponent = !string.IsNullOrWhiteSpace(keyN    ame);
+  hasStringKeyComponent = !string.IsNullOrWhiteSpace(keyName);
 #>
 
 //------------------------------------------------------------------------------
@@ -20,15 +20,13 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class <#=cl assName#> : ICollection<<#=itemType#>>
+  public class <#=className#> : ICollection<<#=itemType#>>
   {
     #region Constants
 
     private readonly Dictionary<int, int> _indexesById;
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
     private readonly Dictionary<string, int> _indexesByName;
 <# } #>
 
@@ -40,9 +38,7 @@ n     ent) { #>
 
     public <#=className#>()
     {
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       _indexesByName = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 <# } #>
       _indexesById = new Dictionary<int, int>();
@@ -53,9 +49,7 @@ n     ent) { #>
 
     #region Properties
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
     public <#=itemType#> this[string key]
     {
       get
@@ -91,9 +85,7 @@ n     ent) { #>
 
     #region Methods
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
     public bool ContainsKey(string key)
     {
       return _indexesByName.ContainsKey(key);
@@ -105,9 +97,7 @@ n     ent) { #>
       return _indexesById.ContainsKey(key);
     }
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
     public bool TryGetValue(string key, out <#=itemType#> value)
     {
       int index;
@@ -145,9 +135,7 @@ n     ent) { #>
 
     internal void Add(<#=itemType#> item)
     {
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       string name;
 <# } #>
       int index;
@@ -157,9 +145,7 @@ n     ent) { #>
         throw new ArgumentNullException(nameof(item));
       }
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       name = item.<#=keyName#>;
 
 #if NET35
@@ -181,9 +167,7 @@ n     ent) { #>
 
       index = _items.Count - 1;
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       _indexesByName.Add(name, index);
 <# } #>
       _indexesById.Add(item.Id, index);
@@ -192,9 +176,7 @@ n     ent) { #>
     internal void Clear()
     {
       _indexesById.Clear();
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       _indexesByName.Clear();
 <# } #>
       _items.Clear();
@@ -202,19 +184,14 @@ n     ent) { #>
 
     internal bool Remove(<#=itemType#> item)
     {
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
       return this.Remove(item.<#=keyName#>);
-<# }
-      else { #>
+<# } else { #>
       return false;
 <# } #>
     }
 
-<# if(hasStringKeyCom
-p   o
-n     ent) { #>
+<# if(hasStringKeyComponent) { #>
     internal bool Remove(string key)
     {
       int index;
