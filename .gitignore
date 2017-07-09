@@ -7,5 +7,3 @@ packages/
 
 *.ncrunch*
 *.user
-
-browser/secret.config
