@@ -3,6 +3,12 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+// Copyright (c) 2017 Cyotek Ltd.
+// http://mantissharp.net/
+// Licensed under the MIT License. See LICENSE.txt for the full text.
+
+// If you use this control in your applications, attribution, donations or contributions are welcome.
+
 [assembly: AssemblyTitle("MantisSharp")]
 [assembly: AssemblyDescription("MantisBT C# Rest API Client")]
 [assembly: AssemblyConfiguration("")]

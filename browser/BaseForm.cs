@@ -4,12 +4,9 @@ using System.Windows.Forms;
 
 namespace MantisSharp.Browser
 {
-  // Cyotek ImageBox
-  // Copyright (c) 2010-2015 Cyotek Ltd.
-  // http://cyotek.com
-  // http://cyotek.com/blog/tag/imagebox
-
-  // Licensed under the MIT License. See license.txt for the full text.
+  // Copyright (c) 2017 Cyotek Ltd.
+  // http://mantissharp.net/
+  // Licensed under the MIT License. See LICENSE.txt for the full text.
 
   // If you use this control in your applications, attribution, donations or contributions are welcome.
 
