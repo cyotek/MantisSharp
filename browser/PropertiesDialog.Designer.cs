@@ -40,7 +40,6 @@
       this.propertyGrid.LineColor = System.Drawing.SystemColors.ControlDark;
       this.propertyGrid.Location = new System.Drawing.Point(12, 12);
       this.propertyGrid.Name = "propertyGrid";
-      this.propertyGrid.ReadOnly = true;
       this.propertyGrid.Size = new System.Drawing.Size(435, 363);
       this.propertyGrid.TabIndex = 0;
       // 

@@ -38,7 +38,16 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Attachment.cs" />
-    <Compile Include="AttachmentCollection.cs" />
+    <Compile Include="AttachmentCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttachmentCollection.generated.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CategoryCollection.generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="DeserializationUtilties.cs" />
     <Compile Include="Issue.cs" />
     <Compile Include="LocalizedMantisReference.cs" />
@@ -48,7 +57,11 @@
     <Compile Include="MantisClient.cs" />
     <Compile Include="MantisReferenceCollection.cs" />
     <Compile Include="Note.cs" />
-    <Compile Include="NoteCollection.cs" />
+    <Compile Include="NoteCollection.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NoteCollection.generated.tt</DependentUpon>
+    </Compile>
     <Compile Include="Profile.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="PetaJson.cs" />
@@ -63,9 +76,28 @@
     <None Include="..\res\MantisSharp.snk">
       <Link>MantisSharp.snk</Link>
     </None>
+    <None Include="Collection.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CategoryCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CategoryCollection.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AttachmentCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AttachmentCollection.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NoteCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NoteCollection.generated.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
