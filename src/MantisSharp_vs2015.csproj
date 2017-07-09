@@ -60,9 +60,10 @@
     <Compile Include="Issue.cs" />
     <Compile Include="IssuePriority.cs" />
     <Compile Include="IssueSeverity.cs" />
-    <Compile Include="LocalizedMantisReference.cs" />
+    <Compile Include="LocalizedMantisEntity.cs" />
     <Compile Include="LookupCache.cs" />
-    <Compile Include="MantisReference.cs" />
+    <Compile Include="MantisEntity.cs" />
+    <Compile Include="NamedMantisEntity.cs" />
     <Compile Include="LookupCache`1.cs" />
     <Compile Include="MantisClient.cs" />
     <Compile Include="MantisReferenceCollection.cs" />
