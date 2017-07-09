@@ -161,6 +161,27 @@ namespace MantisSharp
       return this.LoadItems(_issuesUri, qsb.ToString(), "issues", this.CreateAndPopulateIssue);
     }
 
+    public Project GetProject(int projectId)
+    {
+      Project result;
+
+      result = null;
+
+      // TODO: There's no API that directly gets a single project so we fake it for now
+
+      // ReSharper disable once LoopCanBeConvertedToQuery
+      foreach (Project project in this.GetProjects())
+      {
+        if (project.Id == projectId)
+        {
+          result = project;
+          break;
+        }
+      }
+
+      return result;
+    }
+
     public IEnumerable<Project> GetProjects()
     {
       return this.LoadItems(_projectsUri, null, "projects", this.CreateAndPopulateProject);
