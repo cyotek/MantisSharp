@@ -3,7 +3,7 @@ using PetaJson;
 
 namespace MantisSharp
 {
-  public class Attachment
+  public class Attachment : MantisEntity
   {
     #region Fields
 
@@ -14,8 +14,6 @@ namespace MantisSharp
     private string _downloadUrl;
 
     private string _fileName;
-
-    private int _id;
 
     private User _reporter;
 
@@ -51,13 +49,6 @@ namespace MantisSharp
     {
       get { return _fileName; }
       internal set { _fileName = value; }
-    }
-
-    [Json("id")]
-    public int Id
-    {
-      get { return _id; }
-      internal set { _id = value; }
     }
 
     [Json("reporter")]

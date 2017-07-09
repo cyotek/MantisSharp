@@ -4,13 +4,11 @@ using PetaJson;
 namespace MantisSharp
 {
   [TypeConverter(typeof(ExpandableObjectConverter))]
-  public class MantisReference
+  public abstract class MantisEntity
   {
     #region Fields
 
     private int _id;
-
-    private string _name;
 
     #endregion
 
@@ -21,22 +19,6 @@ namespace MantisSharp
     {
       get { return _id; }
       internal set { _id = value; }
-    }
-
-    [Json("name")]
-    public string Name
-    {
-      get { return _name; }
-      internal set { _name = value; }
-    }
-
-    #endregion
-
-    #region Methods
-
-    public override string ToString()
-    {
-      return _name;
     }
 
     #endregion

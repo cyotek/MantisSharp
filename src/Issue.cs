@@ -2,7 +2,7 @@
 
 namespace MantisSharp
 {
-  public class Issue
+  public class Issue : MantisEntity
   {
     #region Fields
 
@@ -12,15 +12,13 @@ namespace MantisSharp
 
     private AttachmentCollection _attachments;
 
-    private MantisReference _category;
+    private NamedMantisEntity _category;
 
     private DateTime _created;
 
     private string _description;
 
-    private MantisReference _fixVersion;
-
-    private int _id;
+    private NamedMantisEntity _fixVersion;
 
     private DateTime _lastModified;
 
@@ -38,7 +36,7 @@ namespace MantisSharp
 
     private Profile _profile;
 
-    private MantisReference _project;
+    private NamedMantisEntity _project;
 
     private User _reporter;
 
@@ -58,9 +56,9 @@ namespace MantisSharp
 
     private TagCollection _tags;
 
-    private MantisReference _targetVersion;
+    private NamedMantisEntity _targetVersion;
 
-    private MantisReference _version;
+    private NamedMantisEntity _version;
 
     private ViewState _viewState;
 
@@ -86,7 +84,7 @@ namespace MantisSharp
       internal set { _attachments = value; }
     }
 
-    public MantisReference Category
+    public NamedMantisEntity Category
     {
       get { return _category; }
       internal set { _category = value; }
@@ -104,16 +102,10 @@ namespace MantisSharp
       internal set { _description = value; }
     }
 
-    public MantisReference FixVersion
+    public NamedMantisEntity FixVersion
     {
       get { return _fixVersion; }
       internal set { _fixVersion = value; }
-    }
-
-    public int Id
-    {
-      get { return _id; }
-      internal set { _id = value; }
     }
 
     public DateTime LastModified
@@ -164,7 +156,7 @@ namespace MantisSharp
       set { _profile = value; }
     }
 
-    public MantisReference Project
+    public NamedMantisEntity Project
     {
       get { return _project; }
       internal set { _project = value; }
@@ -224,13 +216,13 @@ namespace MantisSharp
       internal set { _tags = value; }
     }
 
-    public MantisReference TargetVersion
+    public NamedMantisEntity TargetVersion
     {
       get { return _targetVersion; }
       internal set { _targetVersion = value; }
     }
 
-    public MantisReference Version
+    public NamedMantisEntity Version
     {
       get { return _version; }
       internal set { _version = value; }

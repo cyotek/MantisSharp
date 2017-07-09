@@ -6,7 +6,7 @@
 
     private readonly LookupCache<AccessLevel> _accessLevelLookup;
 
-    private readonly LookupCache<MantisReference> _categoryLookup;
+    private readonly LookupCache<NamedMantisEntity> _categoryLookup;
 
     private readonly LookupCache<IssueStatus> _issueStatusLookup;
 
@@ -14,7 +14,7 @@
 
     private readonly LookupCache<Profile> _profileLookup;
 
-    private readonly LookupCache<MantisReference> _projectLookup;
+    private readonly LookupCache<NamedMantisEntity> _projectLookup;
 
     private readonly LookupCache<ProjectStatus> _projectStatus;
 
@@ -28,7 +28,7 @@
 
     private readonly LookupCache<User> _userLookup;
 
-    private readonly LookupCache<MantisReference> _versionLookup;
+    private readonly LookupCache<NamedMantisEntity> _versionLookup;
 
     private readonly LookupCache<ViewState> _viewStateLookup;
 
@@ -39,18 +39,18 @@
     public LookupCache()
     {
       _accessLevelLookup = new LookupCache<AccessLevel>(this);
-      _categoryLookup = new LookupCache<MantisReference>(this);
+      _categoryLookup = new LookupCache<NamedMantisEntity>(this);
       _issueStatusLookup = new LookupCache<IssueStatus>(this);
       _priorityLookup = new LookupCache<IssuePriority>(this);
       _profileLookup = new LookupCache<Profile>(this);
-      _projectLookup = new LookupCache<MantisReference>(this);
+      _projectLookup = new LookupCache<NamedMantisEntity>(this);
       _projectStatus = new LookupCache<ProjectStatus>(this);
       _reproducabilityLookup = new LookupCache<IssueReproducability>(this);
       _resolutionLookup = new LookupCache<IssueResolution>(this);
       _severityLookup = new LookupCache<IssueSeverity>(this);
       _tagLookup = new LookupCache<Tag>(this);
       _userLookup = new LookupCache<User>(this);
-      _versionLookup = new LookupCache<MantisReference>(this);
+      _versionLookup = new LookupCache<NamedMantisEntity>(this);
       _viewStateLookup = new LookupCache<ViewState>(this);
     }
 
@@ -63,7 +63,7 @@
       get { return _accessLevelLookup; }
     }
 
-    public LookupCache<MantisReference> Category
+    public LookupCache<NamedMantisEntity> Category
     {
       get { return _categoryLookup; }
     }
@@ -83,7 +83,7 @@
       get { return _profileLookup; }
     }
 
-    public LookupCache<MantisReference> Project
+    public LookupCache<NamedMantisEntity> Project
     {
       get { return _projectLookup; }
     }
@@ -118,7 +118,7 @@
       get { return _userLookup; }
     }
 
-    public LookupCache<MantisReference> Version
+    public LookupCache<NamedMantisEntity> Version
     {
       get { return _versionLookup; }
     }

@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class ProjectStatus : LocalizedMantisReference
+  public class ProjectStatus : LocalizedMantisEntity
   { }
 }

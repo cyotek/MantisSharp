@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class IssuePriority : LocalizedMantisReference
+  public class IssuePriority : LocalizedMantisEntity
   { }
 }

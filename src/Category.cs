@@ -2,18 +2,18 @@
 
 namespace MantisSharp
 {
-  public class Category : MantisReference
+  public class Category : NamedMantisEntity
   {
     #region Fields
 
-    private MantisReference _project;
+    private NamedMantisEntity _project;
 
     #endregion
 
     #region Properties
 
     [Json("project")]
-    public MantisReference Project
+    public NamedMantisEntity Project
     {
       get { return _project; }
       internal set { _project = value; }

@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class IssueResolution : LocalizedMantisReference
+  public class IssueResolution : LocalizedMantisEntity
   { }
 }

@@ -3,7 +3,7 @@
 namespace MantisSharp
 {
   internal sealed class LookupCache<T>
-    where T : MantisReference, new()
+    where T : MantisEntity, new()
   {
     #region Constants
 

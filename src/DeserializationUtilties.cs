@@ -39,7 +39,7 @@ namespace MantisSharp
             {
               // HACk: This is pretty awful
 
-              if (typeof(MantisReference).IsAssignableFrom(type))
+              if (typeof(NamedMantisEntity).IsAssignableFrom(type))
               {
                 Dictionary<string, object> childProps;
 
@@ -81,13 +81,13 @@ namespace MantisSharp
     }
 
     public static T Create<T>(this Dictionary<string, object> props)
-      where T : MantisReference, new()
+      where T : MantisEntity, new()
     {
       return props.Create<T>(null);
     }
 
     public static T Create<T>(this Dictionary<string, object> props, LookupCache cache)
-      where T : MantisReference, new()
+      where T : MantisEntity, new()
     {
       T result;
 
@@ -155,7 +155,7 @@ namespace MantisSharp
     }
 
     public static T GetReference<T>(this Dictionary<string, object> props, string key, LookupCache<T> cache)
-      where T : MantisReference, new()
+      where T : MantisEntity, new()
     {
       T result;
       object childProps;
@@ -167,7 +167,7 @@ namespace MantisSharp
 
     public static TCollection GetReferences<TCollection, TChild>(this Dictionary<string, object> props, string key, LookupCache<TChild> cache)
       where TCollection : class, ICollection<TChild>, new()
-      where TChild : MantisReference, new()
+      where TChild : MantisEntity, new()
     {
       TCollection result;
       object list;

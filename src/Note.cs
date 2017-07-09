@@ -3,13 +3,11 @@ using PetaJson;
 
 namespace MantisSharp
 {
-  public class Note
+  public class Note : MantisEntity
   {
     #region Fields
 
     private DateTime _created;
-
-    private int _id;
 
     private DateTime _lastModified;
 
@@ -30,13 +28,6 @@ namespace MantisSharp
     {
       get { return _created; }
       internal set { _created = value; }
-    }
-
-    [Json("id")]
-    public int Id
-    {
-      get { return _id; }
-      internal set { _id = value; }
     }
 
     [Json("updated_at")]

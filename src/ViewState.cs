@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class ViewState : MantisReference
+  public class ViewState : NamedMantisEntity
   { }
 }

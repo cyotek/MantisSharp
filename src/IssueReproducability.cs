@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class IssueReproducability : LocalizedMantisReference
+  public class IssueReproducability : LocalizedMantisEntity
   { }
 }

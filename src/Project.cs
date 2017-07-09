@@ -1,10 +1,10 @@
 ﻿namespace MantisSharp
 {
-  public class Project
+  public class Project : MantisEntity
   {
     #region Fields
 
-    private LocalizedMantisReference _accessLevel;
+    private LocalizedMantisEntity _accessLevel;
 
     private CategoryCollection _categories;
 
@@ -13,8 +13,6 @@
     private string _description;
 
     private bool _enabled;
-
-    private int _id;
 
     private string _name;
 
@@ -28,7 +26,7 @@
 
     #region Properties
 
-    public LocalizedMantisReference AccessLevel
+    public LocalizedMantisEntity AccessLevel
     {
       get { return _accessLevel; }
       internal set { _accessLevel = value; }
@@ -56,12 +54,6 @@
     {
       get { return _enabled; }
       internal set { _enabled = value; }
-    }
-
-    public int Id
-    {
-      get { return _id; }
-      internal set { _id = value; }
     }
 
     public string Name

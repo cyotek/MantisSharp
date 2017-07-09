@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class Tag : MantisReference
+  public class Tag : NamedMantisEntity
   { }
 }

@@ -1,5 +1,5 @@
 ﻿namespace MantisSharp
 {
-  public class AccessLevel : LocalizedMantisReference
+  public class AccessLevel : LocalizedMantisEntity
   { }
 }

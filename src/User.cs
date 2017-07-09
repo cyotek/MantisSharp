@@ -2,11 +2,11 @@
 
 namespace MantisSharp
 {
-  public class User : MantisReference
+  public class User : NamedMantisEntity
   {
     #region Fields
 
-    private LocalizedMantisReference _accessLevel;
+    private LocalizedMantisEntity _accessLevel;
 
     private string _emailAddress;
 
@@ -23,7 +23,7 @@ namespace MantisSharp
     #region Properties
 
     [Json("access_level")]
-    public LocalizedMantisReference AccessLevel
+    public LocalizedMantisEntity AccessLevel
     {
       get { return _accessLevel; }
       internal set { _accessLevel = value; }

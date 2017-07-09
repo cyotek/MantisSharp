@@ -3,7 +3,7 @@ using PetaJson;
 
 namespace MantisSharp
 {
-  public class ProjectVersion : MantisReference
+  public class ProjectVersion : NamedMantisEntity
   {
     #region Fields
 
