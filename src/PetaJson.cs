@@ -1,15 +1,15 @@
 ﻿// PetaJson v0.5 - A simple but flexible Json library in a single .cs file.
-// 
+//
 // Copyright (C) 2014 Topten Software (contact@toptensoftware.com) All rights reserved.
-// 
-// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this product 
+//
+// Licensed under the Apache License, Version 2.0 (the "License"); you may not use this product
 // except in compliance with the License. You may obtain a copy of the License at
-// 
+//
 // http://www.apache.org/licenses/LICENSE-2.0
-// 
-// Unless required by applicable law or agreed to in writing, software distributed under the 
-// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
-// either express or implied. See the License for the specific language governing permissions 
+//
+// Unless required by applicable law or agreed to in writing, software distributed under the
+// License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+// either express or implied. See the License for the specific language governing permissions
 // and limitations under the License.
 
 // Define PETAJSON_NO_DYNAMIC to disable Expando support
@@ -59,9 +59,9 @@ namespace PetaJson
       StrictParserDefault = false;
 
 #if !PETAJSON_NO_EMIT
-      Json.SetFormatterResolver(Internal.Emit.MakeFormatter);
-      Json.SetParserResolver(Internal.Emit.MakeParser);
-      Json.SetIntoParserResolver(Internal.Emit.MakeIntoParser);
+      Json.SetFormatterResolver(Emit.MakeFormatter);
+      Json.SetParserResolver(Emit.MakeParser);
+      Json.SetIntoParserResolver(Emit.MakeIntoParser);
 #endif
     }
 
@@ -82,7 +82,7 @@ namespace PetaJson
     // Write an object to a text writer
     public static void Write(TextWriter w, object o, JsonOptions options = JsonOptions.None)
     {
-      var writer = new Internal.Writer(w, ResolveOptions(options));
+      var writer = new Writer(w, ResolveOptions(options));
       writer.WriteValue(o);
     }
 
@@ -98,7 +98,7 @@ namespace PetaJson
       }
     }
 
-    // Write a file atomically by writing to a temp file and then renaming it - prevents corrupted files if crash 
+    // Write a file atomically by writing to a temp file and then renaming it - prevents corrupted files if crash
     // in middle of writing file.
     public static void WriteFileAtomic(string filename, object o, JsonOptions options = JsonOptions.None)
     {
@@ -135,7 +135,7 @@ namespace PetaJson
     public static string Format(object o, JsonOptions options = JsonOptions.None)
     {
       var sw = new StringWriter();
-      var writer = new Internal.Writer(sw, ResolveOptions(options));
+      var writer = new Writer(sw, ResolveOptions(options));
       writer.WriteValue(o);
       return sw.ToString();
     }
@@ -143,10 +143,10 @@ namespace PetaJson
     // Parse an object of specified type from a text reader
     public static object Parse(TextReader r, Type type, JsonOptions options = JsonOptions.None)
     {
-      Internal.Reader reader = null;
+      Reader reader = null;
       try
       {
-        reader = new Internal.Reader(r, ResolveOptions(options));
+        reader = new Reader(r, ResolveOptions(options));
         var retv = reader.Parse(type);
         reader.CheckEOF();
         return retv;
@@ -173,10 +173,10 @@ namespace PetaJson
       if (into.GetType().IsValueType)
         throw new InvalidOperationException("Can't ParseInto a value type");
 
-      Internal.Reader reader = null;
+      Reader reader = null;
       try
       {
-        reader = new Internal.Reader(r, ResolveOptions(options));
+        reader = new Reader(r, ResolveOptions(options));
         reader.ParseInto(into);
         reader.CheckEOF();
       }
@@ -282,7 +282,7 @@ namespace PetaJson
       return (T)Reparse(typeof(T), source);
     }
 
-    // Reparse one object into another object 
+    // Reparse one object into another object
     public static void ReparseInto(object dest, object source)
     {
       var ms = new MemoryStream();
@@ -307,7 +307,7 @@ namespace PetaJson
     // Register a callback that can format a value of a particular type into json
     public static void RegisterFormatter(Type type, Action<IJsonWriter, object> formatter)
     {
-      Internal.Writer._formatters[type] = formatter;
+      Writer._formatters[type] = formatter;
     }
 
     // Typed version of above
@@ -319,7 +319,7 @@ namespace PetaJson
     // Register a parser for a specified type
     public static void RegisterParser(Type type, Func<IJsonReader, Type, object> parser)
     {
-      Internal.Reader._parsers.Set(type, parser);
+      Reader._parsers.Set(type, parser);
     }
 
     // Register a typed parser
@@ -343,7 +343,7 @@ namespace PetaJson
     // Register an into parser
     public static void RegisterIntoParser(Type type, Action<IJsonReader, object> parser)
     {
-      Internal.Reader._intoParsers.Set(type, parser);
+      Reader._intoParsers.Set(type, parser);
     }
 
     // Register an into parser
@@ -357,25 +357,25 @@ namespace PetaJson
     // instance and which point it will switch to serialization using reflection
     public static void RegisterTypeFactory(Type type, Func<IJsonReader, string, object> factory)
     {
-      Internal.Reader._typeFactories.Set(type, factory);
+      Reader._typeFactories.Set(type, factory);
     }
 
     // Register a callback to provide a formatter for a newly encountered type
     public static void SetFormatterResolver(Func<Type, Action<IJsonWriter, object>> resolver)
     {
-      Internal.Writer._formatterResolver = resolver;
+      Writer._formatterResolver = resolver;
     }
 
     // Register a callback to provide a parser for a newly encountered value type
     public static void SetParserResolver(Func<Type, Func<IJsonReader, Type, object>> resolver)
     {
-      Internal.Reader._parserResolver = resolver;
+      Reader._parserResolver = resolver;
     }
 
     // Register a callback to provide a parser for a newly encountered reference type
     public static void SetIntoParserResolver(Func<Type, Action<IJsonReader, object>> resolver)
     {
-      Internal.Reader._intoParserResolver = resolver;
+      Reader._intoParserResolver = resolver;
     }
 
     public static bool WalkPath(this IDictionary<string, object> This, string Path, bool create, Func<IDictionary<string, object>, string, bool> leafCallback)
@@ -455,7 +455,7 @@ namespace PetaJson
       This.WalkPath(Path, true, (dict, key) => { dict[key] = value; return true; });
     }
 
-    // Resolve passed options        
+    // Resolve passed options
     static JsonOptions ResolveOptions(JsonOptions options)
     {
       JsonOptions resolved = JsonOptions.None;
@@ -568,7 +568,7 @@ namespace PetaJson
   }
 
   // Represents a line and character offset position in the source Json
-  public struct JsonLineOffset
+  internal struct JsonLineOffset
   {
     public int Line;
     public int Offset;
@@ -586,7 +586,7 @@ namespace PetaJson
   // - A class or struct with no [Json] attribute has all public fields/properties serialized
   // - A class or struct with no [Json] attribute but a [Json] attribute on one or more members only serializes those members
   //
-  // Use [Json("keyname")] to explicitly specify the key to be used 
+  // Use [Json("keyname")] to explicitly specify the key to be used
   // [Json] without the keyname will be serialized using the name of the member with the first letter lowercased.
   //
   // [Json(KeepInstance=true)] causes container/subobject types to be serialized into the existing member instance (if not null)
@@ -671,8 +671,8 @@ namespace PetaJson
     }
   }
 
-  namespace Internal
-  {
+  //namespace Internal
+  //{
     [Obfuscation(Exclude = true, ApplyToMembers = true)]
     internal enum Token
     {
@@ -828,7 +828,7 @@ namespace PetaJson
 
       // ReadLiteral is implemented with a converter callback so that any
       // errors on converting to the target type are thrown before the tokenizer
-      // is advanced to the next token.  This ensures error location is reported 
+      // is advanced to the next token.  This ensures error location is reported
       // at the start of the literal, not the following token.
       public object ReadLiteral(Func<object, object> converter)
       {
@@ -1797,7 +1797,7 @@ namespace PetaJson
                                     // Should we serialize all public methods?
                                     bool serializeAllPublics = typeMarked || !anyFieldsMarked;
 
-                                    // Build 
+                                    // Build
                                     var ri = CreateReflectionInfo(type, mi =>
                                                                         {
                                                                           // Explicitly excluded?
@@ -2850,7 +2850,7 @@ namespace PetaJson
         }
       }
 
-      // Pseudo box lets us pass a value type by reference.  Used during 
+      // Pseudo box lets us pass a value type by reference.  Used during
       // deserialization of value types.
       interface IPseudoBox
       {
@@ -2956,7 +2956,7 @@ namespace PetaJson
             setters.Add(m.JsonKey, (Action<IJsonReader, object>)method.CreateDelegate(typeof(Action<IJsonReader, object>)));
           }
 
-          // Create helpers to invoke the interfaces (this is painful but avoids having to really box 
+          // Create helpers to invoke the interfaces (this is painful but avoids having to really box
           // the value in order to call the interface).
           Action<object, IJsonReader> invokeLoading = MakeInterfaceCall(type, typeof(IJsonLoading));
           Action<object, IJsonReader> invokeLoaded = MakeInterfaceCall(type, typeof(IJsonLoaded));
@@ -3262,7 +3262,7 @@ namespace PetaJson
           il.Emit(OpCodes.Call, typeof(CultureInfo).GetProperty("InvariantCulture").GetGetMethod());
           il.Emit(OpCodes.Call, m.MemberType.GetMethod("Parse", new Type[] { typeof(string), typeof(IFormatProvider) }));
 
-          // 
+          //
           il.Emit(OpCodes.Ldarg_0);
           il.Emit(OpCodes.Callvirt, typeof(IJsonReader).GetMethod("NextToken", new Type[] { }));
         }
@@ -3334,5 +3334,5 @@ namespace PetaJson
       }
     }
 #endif
-  }
+  //}
 }
