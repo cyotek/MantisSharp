@@ -12,10 +12,13 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>Cyotek</Authors>
     <PackageTags>mantisbt, rest</PackageTags>
-    <PackageVersion>0.0.1</PackageVersion>
+    <PackageVersion>0.0.1-alpha</PackageVersion>
     <PackageId>MantisSharp</PackageId>
     <Description>A simple client for working with MantisBT via its REST API.</Description>
     <Copyright>Copyright © 2017 Cyotek Ltd. All Rights Reserved.</Copyright>
+    <PackageProjectUrl>https://mantissharp.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cyotek/MantisSharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <!-- 3.5 Specific -->
