@@ -28,8 +28,11 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.projectsSplitContainer = new System.Windows.Forms.SplitContainer();
       this.projectsListBox = new System.Windows.Forms.ListBox();
+      this.projectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.projectPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.issuesSplitContainer = new System.Windows.Forms.SplitContainer();
       this.issuesListView = new System.Windows.Forms.ListView();
       this.priorityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,10 +65,13 @@
       this.userNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.accessLevelToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.versionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+      this.issueContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.issuePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).BeginInit();
       this.projectsSplitContainer.Panel1.SuspendLayout();
       this.projectsSplitContainer.Panel2.SuspendLayout();
       this.projectsSplitContainer.SuspendLayout();
+      this.projectContextMenuStrip.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.issuesSplitContainer)).BeginInit();
       this.issuesSplitContainer.Panel1.SuspendLayout();
       this.issuesSplitContainer.Panel2.SuspendLayout();
@@ -77,6 +83,7 @@
       this.menuStrip1.SuspendLayout();
       this.toolStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
+      this.issueContextMenuStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // projectsSplitContainer
@@ -99,6 +106,7 @@
       // 
       // projectsListBox
       // 
+      this.projectsListBox.ContextMenuStrip = this.projectContextMenuStrip;
       this.projectsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
       this.projectsListBox.IntegralHeight = false;
       this.projectsListBox.Location = new System.Drawing.Point(0, 0);
@@ -106,6 +114,20 @@
       this.projectsListBox.Size = new System.Drawing.Size(250, 401);
       this.projectsListBox.TabIndex = 0;
       this.projectsListBox.SelectedIndexChanged += new System.EventHandler(this.projectsListBox_SelectedIndexChanged);
+      // 
+      // projectContextMenuStrip
+      // 
+      this.projectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectPropertiesToolStripMenuItem});
+      this.projectContextMenuStrip.Name = "projectContextMenuStrip";
+      this.projectContextMenuStrip.Size = new System.Drawing.Size(137, 26);
+      // 
+      // projectPropertiesToolStripMenuItem
+      // 
+      this.projectPropertiesToolStripMenuItem.Name = "projectPropertiesToolStripMenuItem";
+      this.projectPropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+      this.projectPropertiesToolStripMenuItem.Text = "Propert&ies...";
+      this.projectPropertiesToolStripMenuItem.Click += new System.EventHandler(this.projectPropertiesToolStripMenuItem_Click);
       // 
       // issuesSplitContainer
       // 
@@ -136,6 +158,7 @@
             this.statusColumnHeader,
             this.updatedColumnHeader,
             this.summaryColumnHeader});
+      this.issuesListView.ContextMenuStrip = this.issueContextMenuStrip;
       this.issuesListView.Dock = System.Windows.Forms.DockStyle.Fill;
       this.issuesListView.FullRowSelect = true;
       this.issuesListView.HideSelection = false;
@@ -387,6 +410,20 @@
       this.versionToolStripStatusLabel.Name = "versionToolStripStatusLabel";
       this.versionToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
       // 
+      // issueContextMenuStrip
+      // 
+      this.issueContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.issuePropertiesToolStripMenuItem});
+      this.issueContextMenuStrip.Name = "issueContextMenuStrip";
+      this.issueContextMenuStrip.Size = new System.Drawing.Size(137, 26);
+      // 
+      // issuePropertiesToolStripMenuItem
+      // 
+      this.issuePropertiesToolStripMenuItem.Name = "issuePropertiesToolStripMenuItem";
+      this.issuePropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+      this.issuePropertiesToolStripMenuItem.Text = "Propert&ies...";
+      this.issuePropertiesToolStripMenuItem.Click += new System.EventHandler(this.issuePropertiesToolStripMenuItem_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -403,6 +440,7 @@
       this.projectsSplitContainer.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).EndInit();
       this.projectsSplitContainer.ResumeLayout(false);
+      this.projectContextMenuStrip.ResumeLayout(false);
       this.issuesSplitContainer.Panel1.ResumeLayout(false);
       this.issuesSplitContainer.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.issuesSplitContainer)).EndInit();
@@ -418,6 +456,7 @@
       this.toolStrip1.PerformLayout();
       this.statusStrip1.ResumeLayout(false);
       this.statusStrip1.PerformLayout();
+      this.issueContextMenuStrip.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -458,6 +497,10 @@
     private System.Windows.Forms.ToolStripStatusLabel versionToolStripStatusLabel;
     private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem userPropertiesToolStripMenuItem;
+    private System.Windows.Forms.ContextMenuStrip projectContextMenuStrip;
+    private System.Windows.Forms.ToolStripMenuItem projectPropertiesToolStripMenuItem;
+    private System.Windows.Forms.ContextMenuStrip issueContextMenuStrip;
+    private System.Windows.Forms.ToolStripMenuItem issuePropertiesToolStripMenuItem;
   }
 }
 

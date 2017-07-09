@@ -178,6 +178,11 @@ namespace MantisSharp.Browser
       _client = new MantisClient(uri, key);
     }
 
+    private void issuePropertiesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PropertiesDialog.ShowDialog(_selectedIssue);
+    }
+
     private void issuesListView_SelectedIndexChanged(object sender, EventArgs e)
     {
       if (issuesListView.SelectedItems.Count != 0)
@@ -227,6 +232,11 @@ namespace MantisSharp.Browser
       }
 
       attachmentsLinkLabel.Text = sb.ToString();
+    }
+
+    private void projectPropertiesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      PropertiesDialog.ShowDialog(_selectedProject);
     }
 
     private void projectsListBox_SelectedIndexChanged(object sender, EventArgs e)
