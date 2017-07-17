@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using PetaJson;
 
 // Copyright (c) 2017 Cyotek Ltd.
@@ -105,7 +104,7 @@ namespace MantisSharp
       qsb = new QueryStringBuilder();
       qsb.Add("id", issueId);
 
-      return this.LoadItems(_issuesUri, qsb.ToString(), "issues", this.CreateAndPopulateIssue).First();
+      return this.LoadItems(_issuesUri, qsb.ToString(), "issues", this.CreateAndPopulateIssue)[0];
     }
 
     public IEnumerable<Issue> GetIssues(Project project)
@@ -302,11 +301,12 @@ namespace MantisSharp
       return createItem(data);
     }
 
-    private IEnumerable<T> LoadItems<T>(string uriFragment, string query, string key, Func<Dictionary<string, object>, T> createItem)
+    private T[] LoadItems<T>(string uriFragment, string query, string key, Func<Dictionary<string, object>, T> createItem)
     {
       string uri;
       Dictionary<string, object> data;
       List<object> items;
+      T[] results;
 
       this.CheckConfiguration();
 
@@ -316,18 +316,18 @@ namespace MantisSharp
       _restClient.ExecuteRequest(uri, query, reader => { data = Json.Parse<Dictionary<string, object>>(reader); });
 
       items = (List<object>)data[key];
+      results = new T[items.Count];
 
       for (int i = 0; i < items.Count; i++)
       {
-        T item;
         Dictionary<string, object> itemProps;
 
         itemProps = (Dictionary<string, object>)items[i];
 
-        item = createItem(itemProps);
-
-        yield return item;
+        results[i] = createItem(itemProps);
       }
+
+      return results;
     }
 
     private string NormalizeUri(string uri)
