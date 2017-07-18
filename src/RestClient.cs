@@ -16,7 +16,13 @@ namespace MantisSharp
   {
     #region Constants
 
+    private const string _deleteVerb = "DELETE";
+
+    private const string _getVerb = "GET";
+
     private const string _jsonContentType = "application/json";
+
+    private const string _postVerb = "POST";
 
     #endregion
 
@@ -45,21 +51,26 @@ namespace MantisSharp
 
     #region Methods
 
-    public void ExecuteRequest(string uri, Action<TextReader> action)
+    public void ExecuteDelete(string uri, string query)
     {
-      this.ExecuteRequest(uri, null, action);
+      this.ExecuteRequest(_deleteVerb, uri, query, null, null);
     }
 
-    public void ExecuteRequest(string uri, string query, Action<TextReader> action)
+    public void ExecuteGet(string uri, Action<TextReader> action)
     {
-      this.ExecuteRequest(uri, query, null, response => { this.ProcessTextResponse(response, action); });
+      this.ExecuteGet(uri, null, action);
     }
 
-    public void ExecuteRequest(string uri, string query, Action<HttpWebRequest> init, Action<HttpWebResponse> action)
+    public void ExecuteGet(string uri, string query, Action<TextReader> action)
+    {
+      this.ExecuteRequest(_getVerb, uri, query, null, response => { this.ProcessTextResponse(response, action); });
+    }
+
+    public void ExecuteRequest(string method, string uri, string query, Action<HttpWebRequest> init, Action<HttpWebResponse> action)
     {
       HttpWebRequest request;
 
-      request = this.CreateRequest(uri, query);
+      request = this.CreateRequest(method, uri, query);
 
 #if !DEBUG
       try
@@ -85,7 +96,7 @@ namespace MantisSharp
       }
     }
 
-    private HttpWebRequest CreateRequest(string uri, string query)
+    private HttpWebRequest CreateRequest(string method, string uri, string query)
     {
       HttpWebRequest request;
 
@@ -108,6 +119,7 @@ namespace MantisSharp
 #endif
       request.Headers.Add("Authorization", _authorization);
       request.Accept = _jsonContentType;
+      request.Method = method;
 
       return request;
     }
@@ -129,7 +141,7 @@ namespace MantisSharp
             throw new InvalidDataException("Unexpected content type '" + contentType + "'.");
           }
 
-          action(response);
+          action?.Invoke(response);
 
           this.UpdateVersion(response);
         }

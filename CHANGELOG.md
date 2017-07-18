@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+## 0.0.3
+### Added
+* Added `MantisClient.DeleteIssue(int)`
+
 ## 0.0.2
 
 ### Added

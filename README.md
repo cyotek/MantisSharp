@@ -9,8 +9,8 @@ MantisSharp is a .NET client for the [Mantis Bug Tracker](https://mantisbt.org/)
 
 > You need to enable pre-release in order to see this package from the NuGet package manager
 
-    install-package MantisSharp -IncludePrerelease
-    
+    install-package MantisSharp -Pre
+
 The package currently includes .NET 3.5, 4.0, 4.5 and 4.6 binaries. I was going to include 4.7 until I realised I'd defered the Creators Content update and Microsoft won't let you target 4.7 without upgrading. And I definitely want to include .NET Standard support but I'll need to fumble around a bit more first.
 
 If you just want to use the source, `MantisSharp.sln` can be opened using Visual Studio 2017, `MantisSharp.csproj` is using the new format and does all the multi-targeting and the NuGet packing. `MantisSharp_vs2015.sln` uses the slightly more old school format and can be opened using Visual Studio 2015. All projects with a `_vs2015` suffix are for mainly for development purposes only, I built the release library using VS2017.
@@ -23,7 +23,7 @@ To use the client, you're going to need a Mantis installation with the REST API 
 
 > Note that the type of user (e.g. `viewer` or `developer`) greatly affect the amount of information returned via the REST API, and in some cases affect the functionality - for example, by default the `viewer` role can't access filters.
 
-The REST client was introduced into MantisBT in version 2.3, however I have only tested using 2.5.1 (at the time of writing, this is the current version). Once a successful connection has been made, you can use the `MantisVersion` property of the client object to find out what version the server is reporting. 
+The REST client was introduced into MantisBT in version 2.3, however I have only tested using 2.5.1 (at the time of writing, this is the current version). Once a successful connection has been made, you can use the `MantisVersion` property of the client object to find out what version the server is reporting.
 
 ## Limitations
 
@@ -33,10 +33,10 @@ The REST API offered by MantisBT is also bit limited at the moment. It doesn't p
 
 ## Usage
 
-First you need to create a `MantisClient` object and pass in the base URI where your MantisBT installation is hosted, along with an API key. 
+First you need to create a `MantisClient` object and pass in the base URI where your MantisBT installation is hosted, along with an API key.
 
     MantisClient client = new MantisClient("YOUR_MANTIS_URI", "YOUR_API_KEY");
-    
+
 An API key simply links to a given user account, so you can create multiple accounts with different roles/permissions and then use the most restrictive keys required for a given job.
 
 I haven't done any documentation for this library yet so these instructions are a little sparse. There is a sample WinForms application for browsing data that may be of help.
@@ -49,7 +49,7 @@ The `GetProjects` method will return the projects available to the API user
     {
       Console.WriteLine(project.Name);
     }
-    
+
 ### Listing Issues
 
 The `GetIssues` method returns issues. You can return all issues, or pass in project information to filter by project.
@@ -58,23 +58,29 @@ The `GetIssues` method returns issues. You can return all issues, or pass in pro
     {
       Console.WriteLine(issue.Summary);
     }
-    
+
 Or, you can grab issues for a specific project
 
     var issues = client.GetIssues(4); // or pass in a Project reference
-    
+
 > There are also overloads which let you page results, but given there doesn't seem to be a simple way to get an upfront count this functionality is a little useless right now
-    
+
 You can also grab a single issue
 
     Issue issue = client.GetIssue(52);
+
+### Deleting issues
+
+To delete a single issue
+
+    client.DeleteIssue(52);
 
 ### User Accounts
 
 Currently the only supported feature of the MantisBT REST API is to return details of the user associated with the API token.
 
     User user = client.GetCurrentUser();
-    
+
 ## API Coverage
 
 The following table lists how much of the REST API is currently covered. (There are no actions using `PATCH` or `PUT` verbs in the API).
@@ -82,7 +88,7 @@ The following table lists how much of the REST API is currently covered. (There 
 | API         | DELETE | GET | POST | Notes                                                            |
 | ----------- | :----: | :-: | :--: | ---------------------------------------------------------------- |
 | `/config`   | n/a    | No  | n/a  | Returns no data for my instance.                                 |
-| `/issues`   | No     | Yes | No   | Get supports all, single issue, paging and specifying a filter   |
+| `/issues`   | Yes    | Yes | No   | Get supports all, single issue, paging and specifying a filter   |
 | `/lang`     | n/a    | No  | n/a  | Returns no data for my instance.                                 |
 | `/projects` | n/a    | Yes | n/a  |                                                                  |
 | `/users`    | n/a    | Yes | n/a  | Underlying API only supports returning data for the current user |
@@ -108,7 +114,7 @@ This is an abridged version of code I used to produce a roadmap from an ASP.NET 
       Project = project,
       Issues = issues
     });
-    
+
 ### View
 
     @using MantisSharp
@@ -117,28 +123,28 @@ This is an abridged version of code I used to produce a roadmap from an ASP.NET 
       Product product;
       Project project;
       Issue[] issues;
-    
+
       product = Model.Product;
       project = Model.Project;
       issues = Model.Issues;
     }
-    
+
     @if (project != null)
     {
       ProjectVersion[] versions;
-    
+
       versions = project.Versions.Where(version => !version.Released).OrderBy(version => version.Timestamp).ToArray();
-    
+
       if (versions.Length > 0)
       {
         foreach (ProjectVersion version in versions)
         {
           Issue[] versionIssues;
-    
+
           versionIssues = issues.Where(issue => issue.TargetVersion != null && issue.TargetVersion.Id == version.Id).ToArray();
-    
+
           @Html.Header(2, version.Name)
-    
+
           if (versionIssues.Length > 0)
           {
             <ul class="list-unstyled">
@@ -168,18 +174,18 @@ This is an abridged version of code I used to produce a roadmap from an ASP.NET 
 
 ## Todo
 
-[ ] Documentation  
-[ ] Async support
-[ ] Use something a *little* more modern than `HttpWebRequest`
-[ ] .NET Standard support  
-[ ] Ability to write back to MantisBT  
-[ ] Add .NET 4.7 target  
-[ ] Figure out Nuget woes  
-[ ] Tests  
-[ ] Performance  
-[ ] Finalize API  
-[ ] Rework serialization to be lessy hacky  
-[ ] Error handling - asking for issues that don't exist for example  
+* [ ] Documentation
+* [ ] Async support
+* [ ] Use something a *little* more modern than `HttpWebRequest`
+* [ ] .NET Standard support
+* [ ] Ability to write back to MantisBT
+* [ ] Add .NET 4.7 target
+* [ ] Figure out Nuget woes
+* [ ] Tests
+* [ ] Performance
+* [ ] Finalize API
+* [ ] Rework serialization to be lessy hacky
+* [ ] Error handling - asking for issues that don't exist for example
 
 ## Credits
 

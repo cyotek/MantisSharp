@@ -92,6 +92,19 @@ namespace MantisSharp
 
     #region Methods
 
+    public void DeleteIssue(int issueId)
+    {
+      string uri;
+      string query;
+
+      this.CheckConfiguration();
+
+      uri = this.GetUri(_issuesUri);
+      query = "id=" + issueId;
+
+      _restClient.ExecuteDelete(uri, query);
+    }
+
     public User GetCurrentUser()
     {
       return this.LoadItem(_currentUserApi, null, this.CreateAndPopulateUser);
@@ -99,12 +112,11 @@ namespace MantisSharp
 
     public Issue GetIssue(int issueId)
     {
-      QueryStringBuilder qsb;
+      string query;
 
-      qsb = new QueryStringBuilder();
-      qsb.Add("id", issueId);
+      query = "id=" + issueId;
 
-      return this.LoadItems(_issuesUri, qsb.ToString(), "issues", this.CreateAndPopulateIssue)[0];
+      return this.LoadItems(_issuesUri, query, "issues", this.CreateAndPopulateIssue)[0];
     }
 
     public IEnumerable<Issue> GetIssues(Project project)
@@ -297,7 +309,7 @@ namespace MantisSharp
       uri = this.GetUri(uriFragment);
       data = null;
 
-      _restClient.ExecuteRequest(uri, query, reader => { data = Json.Parse<Dictionary<string, object>>(reader); });
+      _restClient.ExecuteGet(uri, query, reader => { data = Json.Parse<Dictionary<string, object>>(reader); });
 
       return createItem(data);
     }
@@ -314,7 +326,7 @@ namespace MantisSharp
       uri = this.GetUri(uriFragment);
       data = null;
 
-      _restClient.ExecuteRequest(uri, query, reader => { data = Json.Parse<Dictionary<string, object>>(reader); });
+      _restClient.ExecuteGet(uri, query, reader => { data = Json.Parse<Dictionary<string, object>>(reader); });
 
       items = (List<object>)data[key];
       results = new T[items.Count];
