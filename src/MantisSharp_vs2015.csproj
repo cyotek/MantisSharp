@@ -92,6 +92,13 @@
     <Compile Include="QueryStringBuilder.cs" />
     <Compile Include="IssueReproducability.cs" />
     <Compile Include="IssueResolution.cs" />
+    <Compile Include="Relationship.cs" />
+    <Compile Include="RelationshipCollection.generated1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RelationshipCollection.generated.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelationshipType.cs" />
     <Compile Include="RestClient.cs" />
     <Compile Include="IssueStatus.cs" />
     <Compile Include="StringBuilderCache.cs" />
@@ -143,6 +150,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ReferenceCollection.generated.cs</LastGenOutput>
     </Content>
+    <None Include="RelationshipCollection.generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RelationshipCollection.generated1.cs</LastGenOutput>
+    </None>
     <None Include="ProjectVersionCollection.generated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ProjectVersionCollection.generated.cs</LastGenOutput>

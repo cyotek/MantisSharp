@@ -63,6 +63,10 @@ namespace MantisSharp
                 {
                   value = cache.AccessLevel.Get(childProps);
                 }
+                else if (type == typeof(RelationshipType))
+                {
+                  value = cache.RelationshipType.Get(childProps);
+                }
                 else if (key == "project")
                 {
                   // HACK: Using common "Reference" type so can't tell the different

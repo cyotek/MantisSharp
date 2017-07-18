@@ -24,6 +24,8 @@ namespace MantisSharp
 
     private readonly LookupCache<ProjectStatus> _projectStatus;
 
+    private readonly LookupCache<RelationshipType> _relationshipTypeCache;
+
     private readonly LookupCache<IssueReproducability> _reproducabilityLookup;
 
     private readonly LookupCache<IssueResolution> _resolutionLookup;
@@ -51,6 +53,7 @@ namespace MantisSharp
       _profileLookup = new LookupCache<Profile>(this);
       _projectLookup = new LookupCache<Reference>(this);
       _projectStatus = new LookupCache<ProjectStatus>(this);
+      _relationshipTypeCache = new LookupCache<RelationshipType>(this);
       _reproducabilityLookup = new LookupCache<IssueReproducability>(this);
       _resolutionLookup = new LookupCache<IssueResolution>(this);
       _severityLookup = new LookupCache<IssueSeverity>(this);
@@ -97,6 +100,11 @@ namespace MantisSharp
     public LookupCache<ProjectStatus> ProjectStatus
     {
       get { return _projectStatus; }
+    }
+
+    public LookupCache<RelationshipType> RelationshipType
+    {
+      get { return _relationshipTypeCache; }
     }
 
     public LookupCache<IssueReproducability> Reproducability

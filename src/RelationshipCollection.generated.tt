@@ -1,0 +1,11 @@
+﻿<#@ output extension=".cs" #>
+<#
+    string itemType;
+    string className;
+    string keyName;
+
+    className = "RelationshipCollection";
+    itemType = "Relationship";
+    keyName = null;
+    #>
+<#@ include file="Collection.ttinclude" #>

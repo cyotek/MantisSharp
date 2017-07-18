@@ -6,7 +6,6 @@
 
 // If you use this control in your applications, attribution, donations or contributions are welcome.
 
-
 namespace MantisSharp
 {
   public class Issue : MantisEntity
@@ -44,6 +43,8 @@ namespace MantisSharp
     private Profile _profile;
 
     private Reference _project;
+
+    private RelationshipCollection _relationships;
 
     private User _reporter;
 
@@ -167,6 +168,12 @@ namespace MantisSharp
     {
       get { return _project; }
       internal set { _project = value; }
+    }
+
+    public RelationshipCollection Relationships
+    {
+      get { return _relationships; }
+      internal set { _relationships = value; }
     }
 
     public User Reporter
