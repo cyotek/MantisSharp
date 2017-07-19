@@ -42,9 +42,8 @@
       this.statusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.summaryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-      this.attachmentsSplitContainer = new System.Windows.Forms.SplitContainer();
-      this.detailTextBox = new System.Windows.Forms.TextBox();
-      this.attachmentsLinkLabel = new System.Windows.Forms.LinkLabel();
+      this.issueContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.issuePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.menuStrip1 = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,8 +64,7 @@
       this.userNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.accessLevelToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.versionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-      this.issueContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-      this.issuePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.webBrowser = new System.Windows.Forms.WebBrowser();
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).BeginInit();
       this.projectsSplitContainer.Panel1.SuspendLayout();
       this.projectsSplitContainer.Panel2.SuspendLayout();
@@ -76,14 +74,10 @@
       this.issuesSplitContainer.Panel1.SuspendLayout();
       this.issuesSplitContainer.Panel2.SuspendLayout();
       this.issuesSplitContainer.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.attachmentsSplitContainer)).BeginInit();
-      this.attachmentsSplitContainer.Panel1.SuspendLayout();
-      this.attachmentsSplitContainer.Panel2.SuspendLayout();
-      this.attachmentsSplitContainer.SuspendLayout();
+      this.issueContextMenuStrip.SuspendLayout();
       this.menuStrip1.SuspendLayout();
       this.toolStrip1.SuspendLayout();
       this.statusStrip1.SuspendLayout();
-      this.issueContextMenuStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // projectsSplitContainer
@@ -135,7 +129,6 @@
       this.issuesSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
       this.issuesSplitContainer.Location = new System.Drawing.Point(0, 0);
       this.issuesSplitContainer.Name = "issuesSplitContainer";
-      this.issuesSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
       // 
       // issuesSplitContainer.Panel1
       // 
@@ -143,7 +136,7 @@
       // 
       // issuesSplitContainer.Panel2
       // 
-      this.issuesSplitContainer.Panel2.Controls.Add(this.attachmentsSplitContainer);
+      this.issuesSplitContainer.Panel2.Controls.Add(this.webBrowser);
       this.issuesSplitContainer.Size = new System.Drawing.Size(668, 401);
       this.issuesSplitContainer.SplitterDistance = 201;
       this.issuesSplitContainer.TabIndex = 3;
@@ -164,7 +157,7 @@
       this.issuesListView.HideSelection = false;
       this.issuesListView.Location = new System.Drawing.Point(0, 0);
       this.issuesListView.Name = "issuesListView";
-      this.issuesListView.Size = new System.Drawing.Size(668, 201);
+      this.issuesListView.Size = new System.Drawing.Size(201, 401);
       this.issuesListView.TabIndex = 1;
       this.issuesListView.UseCompatibleStateImageBehavior = false;
       this.issuesListView.View = System.Windows.Forms.View.Details;
@@ -204,44 +197,19 @@
       this.summaryColumnHeader.Text = "Summary";
       this.summaryColumnHeader.Width = 360;
       // 
-      // attachmentsSplitContainer
+      // issueContextMenuStrip
       // 
-      this.attachmentsSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.attachmentsSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-      this.attachmentsSplitContainer.Location = new System.Drawing.Point(0, 0);
-      this.attachmentsSplitContainer.Name = "attachmentsSplitContainer";
+      this.issueContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.issuePropertiesToolStripMenuItem});
+      this.issueContextMenuStrip.Name = "issueContextMenuStrip";
+      this.issueContextMenuStrip.Size = new System.Drawing.Size(137, 26);
       // 
-      // attachmentsSplitContainer.Panel1
+      // issuePropertiesToolStripMenuItem
       // 
-      this.attachmentsSplitContainer.Panel1.Controls.Add(this.detailTextBox);
-      // 
-      // attachmentsSplitContainer.Panel2
-      // 
-      this.attachmentsSplitContainer.Panel2.Controls.Add(this.attachmentsLinkLabel);
-      this.attachmentsSplitContainer.Size = new System.Drawing.Size(668, 196);
-      this.attachmentsSplitContainer.SplitterDistance = 468;
-      this.attachmentsSplitContainer.TabIndex = 1;
-      // 
-      // detailTextBox
-      // 
-      this.detailTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.detailTextBox.Location = new System.Drawing.Point(0, 0);
-      this.detailTextBox.Multiline = true;
-      this.detailTextBox.Name = "detailTextBox";
-      this.detailTextBox.ReadOnly = true;
-      this.detailTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-      this.detailTextBox.Size = new System.Drawing.Size(468, 196);
-      this.detailTextBox.TabIndex = 0;
-      // 
-      // attachmentsLinkLabel
-      // 
-      this.attachmentsLinkLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.attachmentsLinkLabel.LinkColor = System.Drawing.SystemColors.HotTrack;
-      this.attachmentsLinkLabel.Location = new System.Drawing.Point(0, 0);
-      this.attachmentsLinkLabel.Name = "attachmentsLinkLabel";
-      this.attachmentsLinkLabel.Size = new System.Drawing.Size(196, 196);
-      this.attachmentsLinkLabel.TabIndex = 0;
-      this.attachmentsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.attachmentsLinkLabel_LinkClicked);
+      this.issuePropertiesToolStripMenuItem.Name = "issuePropertiesToolStripMenuItem";
+      this.issuePropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+      this.issuePropertiesToolStripMenuItem.Text = "Propert&ies...";
+      this.issuePropertiesToolStripMenuItem.Click += new System.EventHandler(this.issuePropertiesToolStripMenuItem_Click);
       // 
       // menuStrip1
       // 
@@ -410,19 +378,15 @@
       this.versionToolStripStatusLabel.Name = "versionToolStripStatusLabel";
       this.versionToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
       // 
-      // issueContextMenuStrip
+      // webBrowser
       // 
-      this.issueContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.issuePropertiesToolStripMenuItem});
-      this.issueContextMenuStrip.Name = "issueContextMenuStrip";
-      this.issueContextMenuStrip.Size = new System.Drawing.Size(137, 26);
-      // 
-      // issuePropertiesToolStripMenuItem
-      // 
-      this.issuePropertiesToolStripMenuItem.Name = "issuePropertiesToolStripMenuItem";
-      this.issuePropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-      this.issuePropertiesToolStripMenuItem.Text = "Propert&ies...";
-      this.issuePropertiesToolStripMenuItem.Click += new System.EventHandler(this.issuePropertiesToolStripMenuItem_Click);
+      this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.webBrowser.Location = new System.Drawing.Point(0, 0);
+      this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+      this.webBrowser.Name = "webBrowser";
+      this.webBrowser.ScriptErrorsSuppressed = true;
+      this.webBrowser.Size = new System.Drawing.Size(463, 401);
+      this.webBrowser.TabIndex = 1;
       // 
       // MainForm
       // 
@@ -445,18 +409,13 @@
       this.issuesSplitContainer.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.issuesSplitContainer)).EndInit();
       this.issuesSplitContainer.ResumeLayout(false);
-      this.attachmentsSplitContainer.Panel1.ResumeLayout(false);
-      this.attachmentsSplitContainer.Panel1.PerformLayout();
-      this.attachmentsSplitContainer.Panel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.attachmentsSplitContainer)).EndInit();
-      this.attachmentsSplitContainer.ResumeLayout(false);
+      this.issueContextMenuStrip.ResumeLayout(false);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();
       this.toolStrip1.ResumeLayout(false);
       this.toolStrip1.PerformLayout();
       this.statusStrip1.ResumeLayout(false);
       this.statusStrip1.PerformLayout();
-      this.issueContextMenuStrip.ResumeLayout(false);
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -479,14 +438,11 @@
     private System.Windows.Forms.ColumnHeader statusColumnHeader;
     private System.Windows.Forms.ColumnHeader updatedColumnHeader;
     private System.Windows.Forms.ColumnHeader summaryColumnHeader;
-    private System.Windows.Forms.TextBox detailTextBox;
     private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
     private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     private System.Windows.Forms.ToolStripStatusLabel statusToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel userNameToolStripStatusLabel;
     private System.Windows.Forms.ToolStripStatusLabel accessLevelToolStripStatusLabel;
-    private System.Windows.Forms.SplitContainer attachmentsSplitContainer;
-    private System.Windows.Forms.LinkLabel attachmentsLinkLabel;
     private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
@@ -501,6 +457,7 @@
     private System.Windows.Forms.ToolStripMenuItem projectPropertiesToolStripMenuItem;
     private System.Windows.Forms.ContextMenuStrip issueContextMenuStrip;
     private System.Windows.Forms.ToolStripMenuItem issuePropertiesToolStripMenuItem;
+    private System.Windows.Forms.WebBrowser webBrowser;
   }
 }
 

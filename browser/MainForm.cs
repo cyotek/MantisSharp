@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -200,44 +199,12 @@ namespace MantisSharp.Browser
         _selectedIssue = null;
       }
 
-      this.LoadAttachmentsList();
+      this.LoadHtmlIssueView();
     }
 
-    private void LoadAttachmentsList()
+    private void LoadHtmlIssueView()
     {
-      LinkLabel.LinkCollection links;
-      StringBuilder sb;
-
-      sb = new StringBuilder();
-      links = attachmentsLinkLabel.Links;
-
-      links.Clear();
-
-      if (_selectedIssue?.Attachments != null)
-      {
-        foreach (Attachment attachment in _selectedIssue.Attachments)
-        {
-          int length;
-
-          length = sb.Length;
-
-          if (length != 0)
-          {
-            sb.Append(Environment.NewLine);
-          }
-
-          links.Add(new LinkLabel.Link(length, attachment.FileName.Length, attachment.DownloadUrl));
-
-          sb.Append(attachment.FileName);
-          sb.Append(' ');
-          sb.Append('(');
-          sb.Append(attachment.Size);
-          sb.Append(" bytes");
-          sb.Append(')');
-        }
-      }
-
-      attachmentsLinkLabel.Text = sb.ToString();
+      webBrowser.DocumentText = _selectedIssue != null ? new HtmlBuilder().BuildHtml(_selectedIssue) : string.Empty;
     }
 
     private void projectPropertiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -272,8 +239,7 @@ namespace MantisSharp.Browser
 
       projectsListBox.Items.Clear();
       issuesListView.Items.Clear();
-      detailTextBox.Clear();
-      attachmentsLinkLabel.Text = string.Empty;
+      webBrowser.DocumentText = string.Empty;
 
       this.RequestLoadProjects();
       this.RequestCurrentUser();
