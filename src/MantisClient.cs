@@ -14,11 +14,15 @@ namespace MantisSharp
   {
     #region Constants
 
+    private const string _configUri = "config/";
+
     private const string _currentUserApi = _usersApi + "me";
 
     private const int _defaultPage = 1;
 
     private const int _defaultPageSize = 50; // from issues_rest.php
+
+    private readonly string[] _empty = new string[0];
 
     private const string _issuesUri = "issues/";
 
@@ -31,6 +35,12 @@ namespace MantisSharp
     private readonly RestClient _restClient;
 
     private const string _usersApi = "users/";
+
+    // ReSharper disable once InconsistentNaming
+    private const int ALL_PROJECTS = 0;
+
+    // ReSharper disable once InconsistentNaming
+    private const string ALL_USERS = "0";
 
     #endregion
 
@@ -103,6 +113,58 @@ namespace MantisSharp
       query = "id=" + issueId;
 
       _restClient.ExecuteDelete(uri, query);
+    }
+
+    public string[] GetConfigValues(string option)
+    {
+      return this.GetConfigValues(option, ALL_PROJECTS);
+    }
+
+    public string[] GetConfigValues(string option, int projectId)
+    {
+      return this.GetConfigValues(option, projectId, ALL_USERS);
+    }
+
+    public string[] GetConfigValues(string option, string userName)
+    {
+      return this.GetConfigValues(option, ALL_PROJECTS, userName);
+    }
+
+    public string[] GetConfigValues(string option, int projectId, string userName)
+    {
+      QueryStringBuilder qsb;
+      string[][] sets;
+
+      qsb = new QueryStringBuilder();
+      qsb.Add("option", option);
+
+      if (projectId > 0)
+      {
+        qsb.Add("project_id", projectId);
+      }
+
+      if (!string.IsNullOrEmpty(userName))
+      {
+        qsb.Add("user_id", userName);
+      }
+
+      sets = this.LoadItems(_configUri, qsb.ToString(), "configs", props =>
+                                                                   {
+                                                                     List<object> values;
+                                                                     string[] results;
+
+                                                                     values = (List<object>)props["value"];
+                                                                     results = new string[values.Count];
+
+                                                                     for (int i = 0; i < results.Length; i++)
+                                                                     {
+                                                                       results[i] = Convert.ToString(values[i]);
+                                                                     }
+
+                                                                     return results;
+                                                                   });
+
+      return sets.Length > 0 ? sets[0] : _empty;
     }
 
     public User GetCurrentUser()

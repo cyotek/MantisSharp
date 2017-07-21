@@ -75,6 +75,12 @@
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="HtmlBuilder.cs" />
+    <Compile Include="ListConfigurationValuesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListConfigurationValuesDialog.Designer.cs">
+      <DependentUpon>ListConfigurationValuesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConnectionDialog.resx">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListConfigurationValuesDialog.resx">
+      <DependentUpon>ListConfigurationValuesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -134,6 +143,9 @@
     <None Include="Resources\user.png" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\version.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\config.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

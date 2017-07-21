@@ -87,7 +87,7 @@ The following table lists how much of the REST API is currently covered. (There 
 
 | API         | DELETE | GET | POST | Notes                                                            |
 | ----------- | :----: | :-: | :--: | ---------------------------------------------------------------- |
-| `/config`   | n/a    | No  | n/a  | Returns no data for my instance.                                 |
+| `/config`   | n/a    | Yes | n/a  |                                                                  |
 | `/issues`   | Yes    | Yes | No   | Get supports all, single issue, paging and specifying a filter   |
 | `/lang`     | n/a    | No  | n/a  | Returns no data for my instance.                                 |
 | `/projects` | n/a    | Yes | n/a  |                                                                  |

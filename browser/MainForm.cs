@@ -90,6 +90,14 @@ namespace MantisSharp.Browser
       return !string.IsNullOrWhiteSpace(_client?.BaseUri) && !string.IsNullOrWhiteSpace(_client.ApiKey);
     }
 
+    private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      using (ListConfigurationValuesDialog dialog = new ListConfigurationValuesDialog(_client))
+      {
+        dialog.ShowDialog(this);
+      }
+    }
+
     private void connectToolStripMenuItem_Click(object sender, EventArgs e)
     {
       using (ConnectionDialog dialog = new ConnectionDialog
