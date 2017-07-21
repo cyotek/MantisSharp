@@ -41,8 +41,11 @@
       this.resultsGroupBox = new System.Windows.Forms.GroupBox();
       this.resultsListBox = new System.Windows.Forms.ListBox();
       this.closeButton = new System.Windows.Forms.Button();
+      this.statusStrip = new System.Windows.Forms.StatusStrip();
+      this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.settingsGroupBox.SuspendLayout();
       this.resultsGroupBox.SuspendLayout();
+      this.statusStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // settingsGroupBox
@@ -161,7 +164,7 @@
       this.resultsGroupBox.Controls.Add(this.resultsListBox);
       this.resultsGroupBox.Location = new System.Drawing.Point(12, 167);
       this.resultsGroupBox.Name = "resultsGroupBox";
-      this.resultsGroupBox.Size = new System.Drawing.Size(483, 202);
+      this.resultsGroupBox.Size = new System.Drawing.Size(483, 189);
       this.resultsGroupBox.TabIndex = 1;
       this.resultsGroupBox.TabStop = false;
       this.resultsGroupBox.Text = "Results";
@@ -175,14 +178,14 @@
       this.resultsListBox.IntegralHeight = false;
       this.resultsListBox.Location = new System.Drawing.Point(6, 19);
       this.resultsListBox.Name = "resultsListBox";
-      this.resultsListBox.Size = new System.Drawing.Size(471, 177);
+      this.resultsListBox.Size = new System.Drawing.Size(471, 164);
       this.resultsListBox.TabIndex = 0;
       // 
       // closeButton
       // 
       this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
       this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-      this.closeButton.Location = new System.Drawing.Point(420, 375);
+      this.closeButton.Location = new System.Drawing.Point(420, 362);
       this.closeButton.Name = "closeButton";
       this.closeButton.Size = new System.Drawing.Size(75, 23);
       this.closeButton.TabIndex = 2;
@@ -190,12 +193,30 @@
       this.closeButton.UseVisualStyleBackColor = true;
       this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
       // 
+      // statusStrip
+      // 
+      this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusToolStripStatusLabel});
+      this.statusStrip.Location = new System.Drawing.Point(0, 388);
+      this.statusStrip.Name = "statusStrip";
+      this.statusStrip.Size = new System.Drawing.Size(507, 22);
+      this.statusStrip.SizingGrip = false;
+      this.statusStrip.TabIndex = 6;
+      // 
+      // statusToolStripStatusLabel
+      // 
+      this.statusToolStripStatusLabel.Name = "statusToolStripStatusLabel";
+      this.statusToolStripStatusLabel.Size = new System.Drawing.Size(461, 17);
+      this.statusToolStripStatusLabel.Spring = true;
+      this.statusToolStripStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
       // ListConfigurationValuesDialog
       // 
       this.AcceptButton = this.getConfigurationButton;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.CancelButton = this.closeButton;
       this.ClientSize = new System.Drawing.Size(507, 410);
+      this.Controls.Add(this.statusStrip);
       this.Controls.Add(this.closeButton);
       this.Controls.Add(this.resultsGroupBox);
       this.Controls.Add(this.settingsGroupBox);
@@ -204,7 +225,10 @@
       this.settingsGroupBox.ResumeLayout(false);
       this.settingsGroupBox.PerformLayout();
       this.resultsGroupBox.ResumeLayout(false);
+      this.statusStrip.ResumeLayout(false);
+      this.statusStrip.PerformLayout();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
@@ -223,5 +247,7 @@
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Button getConfigurationButton;
     private System.Windows.Forms.ListBox resultsListBox;
+    private System.Windows.Forms.StatusStrip statusStrip;
+    private System.Windows.Forms.ToolStripStatusLabel statusToolStripStatusLabel;
   }
 }

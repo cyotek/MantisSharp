@@ -28,6 +28,11 @@ namespace MantisSharp.Browser
 
     #region Methods
 
+    protected override void SetStatusMessage(string message)
+    {
+      statusToolStripStatusLabel.Text = message;
+    }
+
     private void closeButton_Click(object sender, EventArgs e)
     {
       this.Close();
@@ -70,11 +75,28 @@ namespace MantisSharp.Browser
       }
       else
       {
-        string[] results;
+        int projectId;
+        string userName;
 
-        results = _client.GetConfigValues(option);
+        if (!string.IsNullOrWhiteSpace(projectTextBox.Text))
+        {
+          int.TryParse(projectTextBox.Text, out projectId);
+        }
+        else
+        {
+          projectId = 0;
+        }
 
-        this.FillResults(results);
+        userName = userNameTextBox.Text;
+
+        this.ExecuteRequest(() =>
+                            {
+                              string[] results;
+
+                              results = _client.GetConfigValues(option, projectId, userName);
+
+                              this.FillResults(results);
+                            });
       }
     }
 

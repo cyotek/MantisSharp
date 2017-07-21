@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -17,7 +16,7 @@ using System.Windows.Forms;
 
 namespace MantisSharp.Browser
 {
-  internal sealed partial class MainForm : Form
+  internal sealed partial class MainForm : BaseForm
   {
     #region Fields
 
@@ -28,8 +27,6 @@ namespace MantisSharp.Browser
     private Dictionary<int, Issue[]> _issuesByProject;
 
     private Project[] _projects;
-
-    private int _runningRequests;
 
     private Issue _selectedIssue;
 
@@ -58,30 +55,16 @@ namespace MantisSharp.Browser
       this.RequestLoadProjects();
     }
 
+    protected override void SetStatusMessage(string message)
+    {
+      statusToolStripStatusLabel.Text = message;
+    }
+
     private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
       using (AboutDialog dialog = new AboutDialog())
       {
         dialog.ShowDialog(this);
-      }
-    }
-
-    private void attachmentsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-    {
-      string url;
-
-      url = e.Link.LinkData as string;
-
-      if (!string.IsNullOrWhiteSpace(url))
-      {
-        try
-        {
-          Process.Start(url);
-        }
-        catch (Exception ex)
-        {
-          MessageBox.Show("Failed to open URL. " + ex.GetBaseException().Message, "Open URL", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
       }
     }
 
@@ -114,51 +97,6 @@ namespace MantisSharp.Browser
           this.Reconnect();
         }
       }
-    }
-
-    private void EndRequest()
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new MethodInvoker(this.EndRequest));
-      }
-      else
-      {
-        if (_runningRequests > 0)
-        {
-          _runningRequests--;
-        }
-
-        if (_runningRequests == 0)
-        {
-          this.UseWaitCursor = false;
-
-          statusToolStripStatusLabel.Text = string.Empty;
-        }
-      }
-    }
-
-    private void ExecuteRequest(Action action)
-    {
-      this.StartRequest();
-
-      if (Debugger.IsAttached)
-      {
-        action();
-      }
-      else
-      {
-        try
-        {
-          action();
-        }
-        catch (Exception ex)
-        {
-          MessageBox.Show("Failed to process request. " + ex.GetBaseException().Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-      }
-
-      this.EndRequest();
     }
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -326,25 +264,6 @@ namespace MantisSharp.Browser
       {
         _projects = new Project[0];
         this.UpdateProjectsList();
-      }
-    }
-
-    private void StartRequest()
-    {
-      if (this.InvokeRequired)
-      {
-        this.Invoke(new MethodInvoker(this.StartRequest));
-      }
-      else
-      {
-        if (_runningRequests == 0)
-        {
-          this.UseWaitCursor = true;
-
-          statusToolStripStatusLabel.Text = "Requesting information, please wait...";
-        }
-
-        _runningRequests++;
       }
     }
 

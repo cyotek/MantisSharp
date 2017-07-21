@@ -45,7 +45,7 @@
       this.issueContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.issuePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.webBrowser = new System.Windows.Forms.WebBrowser();
-      this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+      this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,21 +54,21 @@
       this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.userPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+      this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+      this.toolStrip = new System.Windows.Forms.ToolStrip();
       this.connectToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      this.configurationsToolStripButton = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       this.refreshToolStripButton = new System.Windows.Forms.ToolStripButton();
-      this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+      this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.userNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.accessLevelToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.versionToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-      this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
-      this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-      this.configurationsToolStripButton = new System.Windows.Forms.ToolStripButton();
-      this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).BeginInit();
       this.projectsSplitContainer.Panel1.SuspendLayout();
       this.projectsSplitContainer.Panel2.SuspendLayout();
@@ -79,9 +79,9 @@
       this.issuesSplitContainer.Panel2.SuspendLayout();
       this.issuesSplitContainer.SuspendLayout();
       this.issueContextMenuStrip.SuspendLayout();
-      this.menuStrip1.SuspendLayout();
-      this.toolStrip1.SuspendLayout();
-      this.statusStrip1.SuspendLayout();
+      this.menuStrip.SuspendLayout();
+      this.toolStrip.SuspendLayout();
+      this.statusStrip.SuspendLayout();
       this.SuspendLayout();
       // 
       // projectsSplitContainer
@@ -143,7 +143,7 @@
       this.issuesSplitContainer.Panel2.Controls.Add(this.webBrowser);
       this.issuesSplitContainer.Size = new System.Drawing.Size(668, 401);
       this.issuesSplitContainer.SplitterDistance = 201;
-      this.issuesSplitContainer.TabIndex = 3;
+      this.issuesSplitContainer.TabIndex = 0;
       // 
       // issuesListView
       // 
@@ -162,7 +162,7 @@
       this.issuesListView.Location = new System.Drawing.Point(0, 0);
       this.issuesListView.Name = "issuesListView";
       this.issuesListView.Size = new System.Drawing.Size(201, 401);
-      this.issuesListView.TabIndex = 1;
+      this.issuesListView.TabIndex = 0;
       this.issuesListView.UseCompatibleStateImageBehavior = false;
       this.issuesListView.View = System.Windows.Forms.View.Details;
       this.issuesListView.SelectedIndexChanged += new System.EventHandler(this.issuesListView_SelectedIndexChanged);
@@ -223,20 +223,19 @@
       this.webBrowser.Name = "webBrowser";
       this.webBrowser.ScriptErrorsSuppressed = true;
       this.webBrowser.Size = new System.Drawing.Size(463, 401);
-      this.webBrowser.TabIndex = 1;
+      this.webBrowser.TabIndex = 0;
       // 
-      // menuStrip1
+      // menuStrip
       // 
-      this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
-      this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-      this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(922, 24);
-      this.menuStrip1.TabIndex = 3;
-      this.menuStrip1.Text = "menuStrip1";
+      this.menuStrip.Location = new System.Drawing.Point(0, 0);
+      this.menuStrip.Name = "menuStrip";
+      this.menuStrip.Size = new System.Drawing.Size(922, 24);
+      this.menuStrip.TabIndex = 0;
       // 
       // fileToolStripMenuItem
       // 
@@ -283,7 +282,7 @@
       this.refreshToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Refresh;
       this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
       this.refreshToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+      this.refreshToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
       this.refreshToolStripMenuItem.Text = "&Refresh";
       this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
       // 
@@ -304,6 +303,19 @@
       this.userPropertiesToolStripMenuItem.Text = "&User Properties...";
       this.userPropertiesToolStripMenuItem.Click += new System.EventHandler(this.userPropertiesToolStripMenuItem_Click);
       // 
+      // toolStripMenuItem2
+      // 
+      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+      this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
+      // 
+      // configurationToolStripMenuItem
+      // 
+      this.configurationToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Config;
+      this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+      this.configurationToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+      this.configurationToolStripMenuItem.Text = "&Configuration...";
+      this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
+      // 
       // helpToolStripMenuItem
       // 
       this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -319,19 +331,18 @@
       this.aboutToolStripMenuItem.Text = "&About...";
       this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
       // 
-      // toolStrip1
+      // toolStrip
       // 
-      this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripButton,
             this.toolStripSeparator1,
             this.configurationsToolStripButton,
             this.toolStripSeparator2,
             this.refreshToolStripButton});
-      this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-      this.toolStrip1.Name = "toolStrip1";
-      this.toolStrip1.Size = new System.Drawing.Size(922, 25);
-      this.toolStrip1.TabIndex = 4;
-      this.toolStrip1.Text = "toolStrip1";
+      this.toolStrip.Location = new System.Drawing.Point(0, 24);
+      this.toolStrip.Name = "toolStrip";
+      this.toolStrip.Size = new System.Drawing.Size(922, 25);
+      this.toolStrip.TabIndex = 1;
       // 
       // connectToolStripButton
       // 
@@ -348,6 +359,21 @@
       this.toolStripSeparator1.Name = "toolStripSeparator1";
       this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
       // 
+      // configurationsToolStripButton
+      // 
+      this.configurationsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.configurationsToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.Config;
+      this.configurationsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.configurationsToolStripButton.Name = "configurationsToolStripButton";
+      this.configurationsToolStripButton.Size = new System.Drawing.Size(23, 22);
+      this.configurationsToolStripButton.Text = "List Configurations";
+      this.configurationsToolStripButton.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
+      // 
+      // toolStripSeparator2
+      // 
+      this.toolStripSeparator2.Name = "toolStripSeparator2";
+      this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+      // 
       // refreshToolStripButton
       // 
       this.refreshToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -358,18 +384,17 @@
       this.refreshToolStripButton.Text = "Refresh";
       this.refreshToolStripButton.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
       // 
-      // statusStrip1
+      // statusStrip
       // 
-      this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+      this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusToolStripStatusLabel,
             this.userNameToolStripStatusLabel,
             this.accessLevelToolStripStatusLabel,
             this.versionToolStripStatusLabel});
-      this.statusStrip1.Location = new System.Drawing.Point(0, 450);
-      this.statusStrip1.Name = "statusStrip1";
-      this.statusStrip1.Size = new System.Drawing.Size(922, 22);
-      this.statusStrip1.TabIndex = 5;
-      this.statusStrip1.Text = "statusStrip1";
+      this.statusStrip.Location = new System.Drawing.Point(0, 450);
+      this.statusStrip.Name = "statusStrip";
+      this.statusStrip.Size = new System.Drawing.Size(922, 22);
+      this.statusStrip.TabIndex = 3;
       // 
       // statusToolStripStatusLabel
       // 
@@ -396,45 +421,22 @@
       this.versionToolStripStatusLabel.Name = "versionToolStripStatusLabel";
       this.versionToolStripStatusLabel.Size = new System.Drawing.Size(16, 17);
       // 
-      // toolStripMenuItem2
-      // 
-      this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-      this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
-      // 
-      // configurationToolStripMenuItem
-      // 
-      this.configurationToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Config;
-      this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-      this.configurationToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-      this.configurationToolStripMenuItem.Text = "&Configuration...";
-      this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
-      // 
-      // configurationsToolStripButton
-      // 
-      this.configurationsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.configurationsToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.Config;
-      this.configurationsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.configurationsToolStripButton.Name = "configurationsToolStripButton";
-      this.configurationsToolStripButton.Size = new System.Drawing.Size(23, 22);
-      this.configurationsToolStripButton.Text = "List Configurations";
-      this.configurationsToolStripButton.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
-      // 
-      // toolStripSeparator2
-      // 
-      this.toolStripSeparator2.Name = "toolStripSeparator2";
-      this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(922, 472);
       this.Controls.Add(this.projectsSplitContainer);
-      this.Controls.Add(this.statusStrip1);
-      this.Controls.Add(this.toolStrip1);
-      this.Controls.Add(this.menuStrip1);
-      this.MainMenuStrip = this.menuStrip1;
+      this.Controls.Add(this.statusStrip);
+      this.Controls.Add(this.toolStrip);
+      this.Controls.Add(this.menuStrip);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+      this.MainMenuStrip = this.menuStrip;
+      this.MaximizeBox = true;
+      this.MinimizeBox = true;
       this.Name = "MainForm";
+      this.ShowIcon = true;
+      this.ShowInTaskbar = true;
+      this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
       this.Text = "MantisBT Browser Sample";
       this.projectsSplitContainer.Panel1.ResumeLayout(false);
       this.projectsSplitContainer.Panel2.ResumeLayout(false);
@@ -446,12 +448,12 @@
       ((System.ComponentModel.ISupportInitialize)(this.issuesSplitContainer)).EndInit();
       this.issuesSplitContainer.ResumeLayout(false);
       this.issueContextMenuStrip.ResumeLayout(false);
-      this.menuStrip1.ResumeLayout(false);
-      this.menuStrip1.PerformLayout();
-      this.toolStrip1.ResumeLayout(false);
-      this.toolStrip1.PerformLayout();
-      this.statusStrip1.ResumeLayout(false);
-      this.statusStrip1.PerformLayout();
+      this.menuStrip.ResumeLayout(false);
+      this.menuStrip.PerformLayout();
+      this.toolStrip.ResumeLayout(false);
+      this.toolStrip.PerformLayout();
+      this.statusStrip.ResumeLayout(false);
+      this.statusStrip.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -460,9 +462,9 @@
     #endregion
     private System.Windows.Forms.SplitContainer projectsSplitContainer;
     private System.Windows.Forms.SplitContainer issuesSplitContainer;
-    private System.Windows.Forms.MenuStrip menuStrip1;
-    private System.Windows.Forms.ToolStrip toolStrip1;
-    private System.Windows.Forms.StatusStrip statusStrip1;
+    private System.Windows.Forms.MenuStrip menuStrip;
+    private System.Windows.Forms.ToolStrip toolStrip;
+    private System.Windows.Forms.StatusStrip statusStrip;
     private System.Windows.Forms.ListBox projectsListBox;
     private System.Windows.Forms.ListView issuesListView;
     private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

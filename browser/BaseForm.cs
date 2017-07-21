@@ -1,4 +1,7 @@
-﻿using System;
+﻿#define CATCHERRORS
+//#undef CATCHERRORS
+
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,6 +16,12 @@ namespace MantisSharp.Browser
 
   internal partial class BaseForm : Form
   {
+    #region Fields
+
+    private int _runningRequests;
+
+    #endregion
+
     #region Constructors
 
     public BaseForm()
@@ -90,6 +99,50 @@ namespace MantisSharp.Browser
 
     #region Methods
 
+    protected virtual void EndRequest()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new MethodInvoker(this.EndRequest));
+      }
+      else
+      {
+        if (_runningRequests > 0)
+        {
+          _runningRequests--;
+        }
+
+        if (_runningRequests == 0)
+        {
+          this.UseWaitCursor = false;
+          Cursor.Current = Cursors.Default;
+
+          this.SetStatusMessage(string.Empty);
+        }
+      }
+    }
+
+    protected void ExecuteRequest(Action action)
+    {
+      this.StartRequest();
+
+#if CATCHERRORS
+      try
+#endif
+      {
+        action();
+      }
+#if !CATCHERRORS
+      try { }
+#endif
+      catch (Exception ex)
+      {
+        MessageBox.Show("Failed to process request. " + ex.GetBaseException().Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+      }
+
+      this.EndRequest();
+    }
+
     protected override void OnLoad(EventArgs e)
     {
       if (!this.DesignMode)
@@ -105,6 +158,29 @@ namespace MantisSharp.Browser
       base.OnShown(e);
 
       Cursor.Current = Cursors.Default;
+    }
+
+    protected virtual void SetStatusMessage(string message)
+    { }
+
+    protected virtual void StartRequest()
+    {
+      if (this.InvokeRequired)
+      {
+        this.Invoke(new MethodInvoker(this.StartRequest));
+      }
+      else
+      {
+        if (_runningRequests == 0)
+        {
+          this.UseWaitCursor = true;
+          Cursor.Current = Cursors.WaitCursor;
+
+          this.SetStatusMessage("Requesting information, please wait...");
+        }
+
+        _runningRequests++;
+      }
     }
 
     #endregion
