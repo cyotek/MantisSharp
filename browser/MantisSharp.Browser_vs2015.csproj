@@ -124,7 +124,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Resources\Refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -143,8 +142,6 @@
     <None Include="Resources\user.png" />
     <None Include="Resources\refresh.png" />
     <None Include="Resources\version.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\config.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
