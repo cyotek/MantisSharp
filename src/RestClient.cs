@@ -22,6 +22,8 @@ namespace MantisSharp
 
     private const string _jsonContentType = "application/json";
 
+    private const string _mantisVersionHeader = "X-Mantis-Version";
+
     private const string _postVerb = "POST";
 
     #endregion
@@ -64,6 +66,20 @@ namespace MantisSharp
     public void ExecuteGet(string uri, string query, Action<TextReader> action)
     {
       this.ExecuteRequest(_getVerb, uri, query, null, response => { this.ProcessTextResponse(response, action); });
+    }
+
+    public void ExecutePost(string uri, Action<TextReader> action)
+    {
+      this.ExecutePost(uri, null, action);
+    }
+
+    public void ExecutePost(string uri, Func<string> getRequestBody, Action<TextReader> action)
+    {
+      this.ExecuteRequest(_postVerb, uri, null, request =>
+                                                {
+                                                  request.ContentType = "application/json;charset=UTF-8";
+                                                  this.WriteRequestText(request, getRequestBody);
+                                                }, response => { this.ProcessTextResponse(response, action); });
     }
 
     public void ExecuteRequest(string method, string uri, string query, Action<HttpWebRequest> init, Action<HttpWebResponse> action)
@@ -130,15 +146,22 @@ namespace MantisSharp
 
       using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
       {
-        if (response.StatusCode == HttpStatusCode.OK)
+        HttpStatusCode statusCode;
+
+        statusCode = response.StatusCode;
+
+        if (statusCode == HttpStatusCode.OK || statusCode == HttpStatusCode.NoContent && this.IsDelete(request) || statusCode == HttpStatusCode.Created && this.IsPost(request))
         {
-          string contentType;
-
-          contentType = this.GetContentType(response.ContentType);
-
-          if (!string.Equals(contentType, _jsonContentType, StringComparison.InvariantCultureIgnoreCase))
+          if (statusCode != HttpStatusCode.NoContent)
           {
-            throw new InvalidDataException("Unexpected content type '" + contentType + "'.");
+            string contentType;
+
+            contentType = this.GetContentType(response.ContentType);
+
+            if (!string.Equals(contentType, _jsonContentType, StringComparison.InvariantCultureIgnoreCase))
+            {
+              throw new InvalidDataException("Unexpected content type '" + contentType + "'.");
+            }
           }
 
           action?.Invoke(response);
@@ -169,23 +192,50 @@ namespace MantisSharp
       return value;
     }
 
-    private string GetResponseString(HttpWebResponse response)
+    private string GetResponseString(WebResponse response)
     {
+      HttpWebResponse webResponse;
       Encoding encoding;
       string result;
 
-      // ReSharper disable once AssignNullToNotNullAttribute
-      encoding = !string.IsNullOrEmpty(response.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+      webResponse = response as HttpWebResponse;
+
+      // ReSharper disable once MergeSequentialChecks
+      if (webResponse != null && !string.IsNullOrEmpty(webResponse.CharacterSet))
+      {
+        encoding = Encoding.GetEncoding(webResponse.CharacterSet);
+      }
+      else
+      {
+        encoding = Encoding.UTF8;
+      }
 
       using (Stream stream = response.GetResponseStream())
       {
-        using (StreamReader reader = new StreamReader(stream, encoding))
+        if (stream != null)
         {
-          result = reader.ReadToEnd();
+          using (StreamReader reader = new StreamReader(stream, encoding))
+          {
+            result = reader.ReadToEnd();
+          }
+        }
+        else
+        {
+          result = null;
         }
       }
 
       return result;
+    }
+
+    private bool IsDelete(WebRequest request)
+    {
+      return string.Equals(request.Method, _deleteVerb, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private bool IsPost(WebRequest request)
+    {
+      return string.Equals(request.Method, _postVerb, StringComparison.OrdinalIgnoreCase);
     }
 
     private void ProcessTextResponse(HttpWebResponse response, Action<TextReader> action)
@@ -208,7 +258,21 @@ namespace MantisSharp
     {
       if (_mantisVersion == null)
       {
-        _mantisVersion = response.GetResponseHeader("X-Mantis-Version");
+        _mantisVersion = response.GetResponseHeader(_mantisVersionHeader);
+      }
+    }
+
+    private void WriteRequestText(WebRequest request, Func<string> bodyFunc)
+    {
+      if (bodyFunc != null)
+      {
+        Stream stream;
+        byte[] buffer;
+
+        stream = request.GetRequestStream();
+        buffer = Encoding.UTF8.GetBytes(bodyFunc());
+
+        stream.Write(buffer, 0, buffer.Length);
       }
     }
 
