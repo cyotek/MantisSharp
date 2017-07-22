@@ -102,6 +102,50 @@ namespace MantisSharp
 
     #region Methods
 
+    public Issue CreateIssue(string summary, string description, int projectId, int categoryId)
+    {
+      return this.CreateIssue(new Issue
+                              {
+                                Summary = summary,
+                                Description = description,
+                                Project = _lookupCache.Project.Get(projectId) ?? new Reference
+                                                                                 {
+                                                                                   Id = projectId
+                                                                                 },
+                                Category = _lookupCache.Category.Get(categoryId) ?? new Reference
+                                                                                    {
+                                                                                      Id = categoryId
+                                                                                    }
+                              });
+    }
+
+    public Issue CreateIssue(Issue issue)
+    {
+      string uri;
+      Issue result;
+
+      uri = this.GetUri(_issuesUri);
+      result = null;
+
+      _restClient.ExecutePost(uri, () => Json.Format(issue), reader =>
+                                                             {
+                                                               Dictionary<string, object> data;
+                                                               Dictionary<string, object> props;
+
+                                                               data = Json.Parse<Dictionary<string, object>>(reader);
+                                                               props = (Dictionary<string, object>)data["issue"];
+
+                                                               result = this.CreateAndPopulateIssue(props);
+                                                             });
+
+      return result;
+    }
+
+    public Issue CreateIssue(string summary, string description, Project project, int categoryId)
+    {
+      return this.CreateIssue(summary, description, project.Id, categoryId);
+    }
+
     public void DeleteIssue(int issueId)
     {
       string uri;
