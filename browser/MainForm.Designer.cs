@@ -29,21 +29,25 @@
     private void InitializeComponent()
     {
       this.components = new System.ComponentModel.Container();
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.projectsSplitContainer = new System.Windows.Forms.SplitContainer();
       this.projectsListBox = new System.Windows.Forms.ListBox();
       this.projectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
       this.projectPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.issuesSplitContainer = new System.Windows.Forms.SplitContainer();
       this.issuesListView = new System.Windows.Forms.ListView();
-      this.priorityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+      this.priorityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.categoryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.severityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.statusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.updatedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.summaryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
       this.issueContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+      this.deleteIssueContextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
       this.issuePropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.imageList = new System.Windows.Forms.ImageList(this.components);
       this.webBrowser = new System.Windows.Forms.WebBrowser();
       this.menuStrip = new System.Windows.Forms.MenuStrip();
       this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,14 +60,20 @@
       this.userPropertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
       this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.issueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.createIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+      this.deleteIssueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
       this.toolStrip = new System.Windows.Forms.ToolStrip();
       this.connectToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+      this.refreshToolStripButton = new System.Windows.Forms.ToolStripButton();
+      this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
       this.configurationsToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-      this.refreshToolStripButton = new System.Windows.Forms.ToolStripButton();
+      this.createIssueToolStripButton = new System.Windows.Forms.ToolStripButton();
+      this.deleteIssueToolStripButton = new System.Windows.Forms.ToolStripButton();
       this.statusStrip = new System.Windows.Forms.StatusStrip();
       this.statusToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
       this.userNameToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -122,6 +132,7 @@
       // 
       // projectPropertiesToolStripMenuItem
       // 
+      this.projectPropertiesToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Properties;
       this.projectPropertiesToolStripMenuItem.Name = "projectPropertiesToolStripMenuItem";
       this.projectPropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
       this.projectPropertiesToolStripMenuItem.Text = "Propert&ies...";
@@ -148,8 +159,8 @@
       // issuesListView
       // 
       this.issuesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.priorityColumnHeader,
             this.idColumnHeader,
+            this.priorityColumnHeader,
             this.categoryColumnHeader,
             this.severityColumnHeader,
             this.statusColumnHeader,
@@ -162,19 +173,20 @@
       this.issuesListView.Location = new System.Drawing.Point(0, 0);
       this.issuesListView.Name = "issuesListView";
       this.issuesListView.Size = new System.Drawing.Size(201, 401);
+      this.issuesListView.SmallImageList = this.imageList;
       this.issuesListView.TabIndex = 0;
       this.issuesListView.UseCompatibleStateImageBehavior = false;
       this.issuesListView.View = System.Windows.Forms.View.Details;
       this.issuesListView.SelectedIndexChanged += new System.EventHandler(this.issuesListView_SelectedIndexChanged);
       // 
-      // priorityColumnHeader
-      // 
-      this.priorityColumnHeader.Text = "Priority";
-      // 
       // idColumnHeader
       // 
       this.idColumnHeader.Text = "Id";
-      this.idColumnHeader.Width = 40;
+      this.idColumnHeader.Width = 80;
+      // 
+      // priorityColumnHeader
+      // 
+      this.priorityColumnHeader.Text = "Priority";
       // 
       // categoryColumnHeader
       // 
@@ -204,16 +216,39 @@
       // issueContextMenuStrip
       // 
       this.issueContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteIssueContextToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.issuePropertiesToolStripMenuItem});
       this.issueContextMenuStrip.Name = "issueContextMenuStrip";
-      this.issueContextMenuStrip.Size = new System.Drawing.Size(137, 26);
+      this.issueContextMenuStrip.Size = new System.Drawing.Size(137, 54);
+      // 
+      // deleteIssueContextToolStripMenuItem
+      // 
+      this.deleteIssueContextToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.DeleteIssue;
+      this.deleteIssueContextToolStripMenuItem.Name = "deleteIssueContextToolStripMenuItem";
+      this.deleteIssueContextToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+      this.deleteIssueContextToolStripMenuItem.Text = "&Delete...";
+      this.deleteIssueContextToolStripMenuItem.Click += new System.EventHandler(this.deleteIssueToolStripMenuItem_Click);
+      // 
+      // toolStripMenuItem3
+      // 
+      this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+      this.toolStripMenuItem3.Size = new System.Drawing.Size(133, 6);
       // 
       // issuePropertiesToolStripMenuItem
       // 
+      this.issuePropertiesToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.Properties;
       this.issuePropertiesToolStripMenuItem.Name = "issuePropertiesToolStripMenuItem";
       this.issuePropertiesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
       this.issuePropertiesToolStripMenuItem.Text = "Propert&ies...";
       this.issuePropertiesToolStripMenuItem.Click += new System.EventHandler(this.issuePropertiesToolStripMenuItem_Click);
+      // 
+      // imageList
+      // 
+      this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+      this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+      this.imageList.Images.SetKeyName(0, "issue");
+      this.imageList.Images.SetKeyName(1, "issuefiles");
       // 
       // webBrowser
       // 
@@ -231,6 +266,7 @@
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
+            this.issueToolStripMenuItem,
             this.helpToolStripMenuItem});
       this.menuStrip.Location = new System.Drawing.Point(0, 0);
       this.menuStrip.Name = "menuStrip";
@@ -316,6 +352,31 @@
       this.configurationToolStripMenuItem.Text = "&Configuration...";
       this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
       // 
+      // issueToolStripMenuItem
+      // 
+      this.issueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createIssueToolStripMenuItem,
+            this.deleteIssueToolStripMenuItem});
+      this.issueToolStripMenuItem.Name = "issueToolStripMenuItem";
+      this.issueToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+      this.issueToolStripMenuItem.Text = "&Issue";
+      // 
+      // createIssueToolStripMenuItem
+      // 
+      this.createIssueToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.CreateIssue;
+      this.createIssueToolStripMenuItem.Name = "createIssueToolStripMenuItem";
+      this.createIssueToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+      this.createIssueToolStripMenuItem.Text = "&Create...";
+      this.createIssueToolStripMenuItem.Click += new System.EventHandler(this.createIssueToolStripMenuItem_Click);
+      // 
+      // deleteIssueToolStripMenuItem
+      // 
+      this.deleteIssueToolStripMenuItem.Image = global::MantisSharp.Browser.Properties.Resources.DeleteIssue;
+      this.deleteIssueToolStripMenuItem.Name = "deleteIssueToolStripMenuItem";
+      this.deleteIssueToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+      this.deleteIssueToolStripMenuItem.Text = "&Delete...";
+      this.deleteIssueToolStripMenuItem.Click += new System.EventHandler(this.deleteIssueToolStripMenuItem_Click);
+      // 
       // helpToolStripMenuItem
       // 
       this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -336,9 +397,12 @@
       this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToolStripButton,
             this.toolStripSeparator1,
+            this.refreshToolStripButton,
+            this.toolStripSeparator3,
             this.configurationsToolStripButton,
             this.toolStripSeparator2,
-            this.refreshToolStripButton});
+            this.createIssueToolStripButton,
+            this.deleteIssueToolStripButton});
       this.toolStrip.Location = new System.Drawing.Point(0, 24);
       this.toolStrip.Name = "toolStrip";
       this.toolStrip.Size = new System.Drawing.Size(922, 25);
@@ -359,6 +423,21 @@
       this.toolStripSeparator1.Name = "toolStripSeparator1";
       this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
       // 
+      // refreshToolStripButton
+      // 
+      this.refreshToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.refreshToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.Refresh;
+      this.refreshToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.refreshToolStripButton.Name = "refreshToolStripButton";
+      this.refreshToolStripButton.Size = new System.Drawing.Size(23, 22);
+      this.refreshToolStripButton.Text = "Refresh";
+      this.refreshToolStripButton.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+      // 
+      // toolStripSeparator3
+      // 
+      this.toolStripSeparator3.Name = "toolStripSeparator3";
+      this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+      // 
       // configurationsToolStripButton
       // 
       this.configurationsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -374,15 +453,25 @@
       this.toolStripSeparator2.Name = "toolStripSeparator2";
       this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
       // 
-      // refreshToolStripButton
+      // createIssueToolStripButton
       // 
-      this.refreshToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-      this.refreshToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.Refresh;
-      this.refreshToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-      this.refreshToolStripButton.Name = "refreshToolStripButton";
-      this.refreshToolStripButton.Size = new System.Drawing.Size(23, 22);
-      this.refreshToolStripButton.Text = "Refresh";
-      this.refreshToolStripButton.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+      this.createIssueToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.createIssueToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.CreateIssue;
+      this.createIssueToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.createIssueToolStripButton.Name = "createIssueToolStripButton";
+      this.createIssueToolStripButton.Size = new System.Drawing.Size(23, 22);
+      this.createIssueToolStripButton.Text = "Create Issue";
+      this.createIssueToolStripButton.Click += new System.EventHandler(this.createIssueToolStripMenuItem_Click);
+      // 
+      // deleteIssueToolStripButton
+      // 
+      this.deleteIssueToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+      this.deleteIssueToolStripButton.Image = global::MantisSharp.Browser.Properties.Resources.DeleteIssue;
+      this.deleteIssueToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+      this.deleteIssueToolStripButton.Name = "deleteIssueToolStripButton";
+      this.deleteIssueToolStripButton.Size = new System.Drawing.Size(23, 22);
+      this.deleteIssueToolStripButton.Text = "Delete Issue";
+      this.deleteIssueToolStripButton.Click += new System.EventHandler(this.deleteIssueToolStripMenuItem_Click);
       // 
       // statusStrip
       // 
@@ -437,7 +526,7 @@
       this.ShowIcon = true;
       this.ShowInTaskbar = true;
       this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
-      this.Text = "MantisBT Browser Sample";
+      this.Text = "MantisSharp Browser Sample";
       this.projectsSplitContainer.Panel1.ResumeLayout(false);
       this.projectsSplitContainer.Panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.projectsSplitContainer)).EndInit();
@@ -500,6 +589,15 @@
     private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
     private System.Windows.Forms.ToolStripButton configurationsToolStripButton;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+    private System.Windows.Forms.ToolStripMenuItem issueToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem deleteIssueToolStripMenuItem;
+    private System.Windows.Forms.ToolStripMenuItem createIssueToolStripMenuItem;
+    private System.Windows.Forms.ImageList imageList;
+    private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+    private System.Windows.Forms.ToolStripButton createIssueToolStripButton;
+    private System.Windows.Forms.ToolStripButton deleteIssueToolStripButton;
+    private System.Windows.Forms.ToolStripMenuItem deleteIssueContextToolStripMenuItem;
+    private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
   }
 }
 

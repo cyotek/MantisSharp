@@ -1,5 +1,5 @@
 ﻿#define CATCHERRORS
-//#undef CATCHERRORS
+#undef CATCHERRORS
 
 using System;
 using System.ComponentModel;
@@ -122,8 +122,12 @@ namespace MantisSharp.Browser
       }
     }
 
-    protected void ExecuteRequest(Action action)
+    protected bool ExecuteRequest(Action action)
     {
+      bool failed;
+
+      failed = false;
+
       this.StartRequest();
 
 #if CATCHERRORS
@@ -133,14 +137,18 @@ namespace MantisSharp.Browser
         action();
       }
 #if !CATCHERRORS
-      try { }
+      try
+      { }
 #endif
       catch (Exception ex)
       {
+        failed = true;
         MessageBox.Show("Failed to process request. " + ex.GetBaseException().Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
       }
 
       this.EndRequest();
+
+      return !failed;
     }
 
     protected override void OnLoad(EventArgs e)

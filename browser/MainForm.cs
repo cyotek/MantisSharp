@@ -99,9 +99,43 @@ namespace MantisSharp.Browser
       }
     }
 
+    private void createIssueToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      using (CreateIssueDialog dialog = new CreateIssueDialog(_client, _selectedProject))
+      {
+        if (dialog.ShowDialog(this) == DialogResult.OK)
+        {
+          // TODO: Add the new entry directly instead of forcing a full reload
+          _issuesByProject.Remove(_selectedIssue.Project.Id);
+          this.RequestLoadIssues();
+        }
+      }
+    }
+
+    private void deleteIssueToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      int issueId;
+
+      issueId = _selectedIssue.Id;
+
+      if (MessageBox.Show(string.Format("Are you sure you want to delete issue {0}?\n\nThis action cannot be undone.", issueId), "Delete Issue", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+      {
+        this.ExecuteRequest(() => _client.DeleteIssue(issueId));
+
+        // TODO: Remove the deleted entry directly instead of forcing a full reload
+        _issuesByProject.Remove(_selectedIssue.Project.Id);
+        this.RequestLoadIssues();
+      }
+    }
+
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
       this.Close();
+    }
+
+    private string GetIssueImageKey(Issue issue)
+    {
+      return issue.Attachments != null && issue.Attachments.Count != 0 ? "issuefiles" : "issue";
     }
 
     private void InitializeClient()
@@ -145,6 +179,7 @@ namespace MantisSharp.Browser
         _selectedIssue = null;
       }
 
+      this.UpdateControlState();
       this.LoadHtmlIssueView();
     }
 
@@ -173,6 +208,7 @@ namespace MantisSharp.Browser
         _selectedProject = null;
       }
 
+      this.UpdateControlState();
       this.RequestLoadIssues();
     }
 
@@ -186,6 +222,8 @@ namespace MantisSharp.Browser
       projectsListBox.Items.Clear();
       issuesListView.Items.Clear();
       webBrowser.DocumentText = string.Empty;
+
+      this.UpdateControlState();
 
       this.RequestLoadProjects();
       this.RequestCurrentUser();
@@ -267,6 +305,21 @@ namespace MantisSharp.Browser
       }
     }
 
+    private void UpdateControlState()
+    {
+      bool canCreateIssue;
+      bool canDeleteIssue;
+
+      canCreateIssue = _selectedProject != null;
+      canDeleteIssue = _selectedIssue != null;
+
+      createIssueToolStripButton.Enabled = canCreateIssue;
+      createIssueToolStripMenuItem.Enabled = canCreateIssue;
+
+      deleteIssueToolStripButton.Enabled = canDeleteIssue;
+      deleteIssueToolStripMenuItem.Enabled = canDeleteIssue;
+    }
+
     private void UpdateIssuesList()
     {
       if (this.InvokeRequired)
@@ -295,11 +348,12 @@ namespace MantisSharp.Browser
                    {
                      Name = issue.Id.ToString(),
                      Tag = issue,
-                     UseItemStyleForSubItems = false
+                     UseItemStyleForSubItems = false,
+                     ImageKey = this.GetIssueImageKey(issue)
                    };
 
-            item.Text = issue.Priority.Label;
-            item.SubItems.Add(issue.Id.ToString("######"));
+            item.Text = issue.Id.ToString("00000");
+            item.SubItems.Add(issue.Priority.Label);
             item.SubItems.Add(issue.Category.Name);
             item.SubItems.Add(issue.Severity.Label);
             item.SubItems.Add(issue.Status.Label).ForeColor = ColorTranslator.FromHtml(issue.Status.Color);

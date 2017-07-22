@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonMark.NET.0.15.1\lib\net45\CommonMark.dll</HintPath>
@@ -74,6 +77,12 @@
     <Compile Include="ConnectionDialog.Designer.cs">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateIssueDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateIssueDialog.Designer.cs">
+      <DependentUpon>CreateIssueDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="HtmlBuilder.cs" />
     <Compile Include="ListConfigurationValuesDialog.cs">
       <SubType>Form</SubType>
@@ -109,6 +118,9 @@
     <EmbeddedResource Include="ConnectionDialog.resx">
       <DependentUpon>ConnectionDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateIssueDialog.resx">
+      <DependentUpon>CreateIssueDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListConfigurationValuesDialog.resx">
       <DependentUpon>ListConfigurationValuesDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +135,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +156,15 @@
     <None Include="Resources\refresh.png" />
     <None Include="Resources\version.png" />
     <None Include="Resources\config.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create-issue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-issue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\properties.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

@@ -3,9 +3,15 @@ Change Log
 
 ## 0.3.0
 ### Added
+* Added `MantisClient.CreateIssue` with various overloads for creating new issues
 * Added `MantisClient.DeleteIssue(int)`
-* Added `MantisClient.GetConfigValues` with various overloads for returning configuration settings.
-* Updated Browser sample to include support for retrieving configuration settings
+* Added `MantisClient.GetConfigValues` with various overloads for returning configuration settings
+* Browser sample can now retrieve configuration settings
+* Browser sample can now delete issues
+* Browser sample can now create issues
+
+### Changed
+* All properties are now settable
 
 ## 0.0.2
 
