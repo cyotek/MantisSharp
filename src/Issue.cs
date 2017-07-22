@@ -1,4 +1,5 @@
 ﻿using System;
+using PetaJson;
 
 // Copyright (c) 2017 Cyotek Ltd.
 // http://mantissharp.net/
@@ -74,178 +75,206 @@ namespace MantisSharp
 
     #region Properties
 
+    [Json("additional_information")]
     public string AdditionalInformation
     {
       get { return _additionalInformation; }
-      internal set { _additionalInformation = value; }
+      set { _additionalInformation = value; }
     }
 
+    [Json("handler")]
     public User AssignedTo
     {
       get { return _assignedTo; }
-      internal set { _assignedTo = value; }
+      set { _assignedTo = value; }
     }
+
+    [Json("attachments")]
 
     public AttachmentCollection Attachments
     {
       get { return _attachments; }
-      internal set { _attachments = value; }
+      set { _attachments = value; }
     }
 
+    [Json("category")]
     public Reference Category
     {
       get { return _category; }
-      internal set { _category = value; }
+      set { _category = value; }
     }
 
     public DateTime Created
     {
       get { return _created; }
-      internal set { _created = value; }
+      set { _created = value; }
     }
 
+    [Json("description")]
     public string Description
     {
       get { return _description; }
-      internal set { _description = value; }
+      set { _description = value; }
     }
 
+    [Json("fixed_in_version")]
     public Reference FixVersion
     {
       get { return _fixVersion; }
-      internal set { _fixVersion = value; }
+      set { _fixVersion = value; }
     }
 
     public DateTime LastModified
     {
       get { return _lastModified; }
-      internal set { _lastModified = value; }
+      set { _lastModified = value; }
     }
 
+    [Json("monitors")]
     public UserCollection Monitors
     {
       get { return _monitors; }
-      internal set { _monitors = value; }
+      set { _monitors = value; }
     }
 
+    [Json("notes")]
     public NoteCollection Notes
     {
       get { return _notes; }
-      internal set { _notes = value; }
+      set { _notes = value; }
     }
 
+    [Json("os")]
     public string OperatingSystem
     {
       get { return _operatingSystem; }
-      internal set { _operatingSystem = value; }
+      set { _operatingSystem = value; }
     }
 
+    [Json("os_build")]
     public string OperatingSystemBuild
     {
       get { return _operatingSystemBuild; }
-      internal set { _operatingSystemBuild = value; }
+      set { _operatingSystemBuild = value; }
     }
 
+    [Json("platform")]
     public string Platform
     {
       get { return _platform; }
-      internal set { _platform = value; }
+      set { _platform = value; }
     }
 
+    [Json("priority")]
     public IssuePriority Priority
     {
       get { return _priority; }
-      internal set { _priority = value; }
+      set { _priority = value; }
     }
 
+    [Json("profile")]
     public Profile Profile
     {
       get { return _profile; }
       set { _profile = value; }
     }
 
+    [Json("project")]
     public Reference Project
     {
       get { return _project; }
-      internal set { _project = value; }
+      set { _project = value; }
     }
 
+    [Json("relationships")]
     public RelationshipCollection Relationships
     {
       get { return _relationships; }
-      internal set { _relationships = value; }
+      set { _relationships = value; }
     }
 
+    [Json("reporter")]
     public User Reporter
     {
       get { return _reporter; }
-      internal set { _reporter = value; }
+      set { _reporter = value; }
     }
 
+    [Json("reproducibility")]
     public IssueReproducability Reproducibility
     {
       get { return _reproducibility; }
-      internal set { _reproducibility = value; }
+      set { _reproducibility = value; }
     }
 
+    [Json("resolution")]
     public IssueResolution Resolution
     {
       get { return _resolution; }
-      internal set { _resolution = value; }
+      set { _resolution = value; }
     }
 
+    [Json("severity")]
     public IssueSeverity Severity
     {
       get { return _severity; }
-      internal set { _severity = value; }
+      set { _severity = value; }
     }
 
+    [Json("status")]
     public IssueStatus Status
     {
       get { return _status; }
-      internal set { _status = value; }
+      set { _status = value; }
     }
 
+    [Json("steps_to_reproduce")]
     public string StepsToReproduce
     {
       get { return _stepsToReproduce; }
-      internal set { _stepsToReproduce = value; }
+      set { _stepsToReproduce = value; }
     }
 
+    [Json("sticky")]
     public bool Sticky
     {
       get { return _sticky; }
-      internal set { _sticky = value; }
+      set { _sticky = value; }
     }
 
+    [Json("summary")]
     public string Summary
     {
       get { return _summary; }
-      internal set { _summary = value; }
+      set { _summary = value; }
     }
 
+    [Json("tags")]
     public TagCollection Tags
     {
       get { return _tags; }
-      internal set { _tags = value; }
+      set { _tags = value; }
     }
 
+    [Json("target_version")]
     public Reference TargetVersion
     {
       get { return _targetVersion; }
-      internal set { _targetVersion = value; }
+      set { _targetVersion = value; }
     }
 
+    [Json("version")]
     public Reference Version
     {
       get { return _version; }
-      internal set { _version = value; }
+      set { _version = value; }
     }
 
+    [Json("view_state")]
     public ViewState ViewState
     {
       get { return _viewState; }
-      internal set { _viewState = value; }
+      set { _viewState = value; }
     }
 
     #endregion

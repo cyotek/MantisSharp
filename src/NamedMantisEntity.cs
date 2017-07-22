@@ -22,7 +22,7 @@ namespace MantisSharp
     public string Name
     {
       get { return _name; }
-      internal set { _name = value; }
+      set { _name = value; }
     }
 
     #endregion

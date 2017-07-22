@@ -35,55 +35,55 @@ namespace MantisSharp
     public LocalizedMantisEntity AccessLevel
     {
       get { return _accessLevel; }
-      internal set { _accessLevel = value; }
+      set { _accessLevel = value; }
     }
 
     public CategoryCollection Categories
     {
       get { return _categories; }
-      internal set { _categories = value; }
+      set { _categories = value; }
     }
 
     public CustomFieldCollection CustomFields
     {
       get { return _customFields; }
-      internal set { _customFields = value; }
+      set { _customFields = value; }
     }
 
     public string Description
     {
       get { return _description; }
-      internal set { _description = value; }
+      set { _description = value; }
     }
 
     public bool Enabled
     {
       get { return _enabled; }
-      internal set { _enabled = value; }
+      set { _enabled = value; }
     }
 
     public string Name
     {
       get { return _name; }
-      internal set { _name = value; }
+      set { _name = value; }
     }
 
     public ProjectStatus Status
     {
       get { return _status; }
-      internal set { _status = value; }
+      set { _status = value; }
     }
 
     public ProjectVersionCollection Versions
     {
       get { return _versions; }
-      internal set { _versions = value; }
+      set { _versions = value; }
     }
 
     public ViewState ViewState
     {
       get { return _viewState; }
-      internal set { _viewState = value; }
+      set { _viewState = value; }
     }
 
     #endregion

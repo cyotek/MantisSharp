@@ -24,7 +24,7 @@ namespace MantisSharp
     public int Id
     {
       get { return _id; }
-      internal set { _id = value; }
+      set { _id = value; }
     }
 
     #endregion

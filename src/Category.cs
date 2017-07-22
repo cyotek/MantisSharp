@@ -23,7 +23,7 @@ namespace MantisSharp
     public Reference Project
     {
       get { return _project; }
-      internal set { _project = value; }
+      set { _project = value; }
     }
 
     #endregion

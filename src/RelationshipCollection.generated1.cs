@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class RelationshipCollection : ICollection<Relationship>
+  public partial class RelationshipCollection : ICollection<Relationship>
   {
     #region Constants
 
@@ -83,7 +83,11 @@ namespace MantisSharp
       return index != -1;
     }
 
-    internal void Add(Relationship item)
+    #endregion
+
+    #region ICollection<Relationship> Interface
+
+    public void Add(Relationship item)
     {
       int index;
 
@@ -99,20 +103,11 @@ namespace MantisSharp
       _indexesById.Add(item.Id, index);
     }
 
-    internal void Clear()
+    public void Clear()
     {
       _indexesById.Clear();
       _items.Clear();
     }
-
-    internal bool Remove(Relationship item)
-    {
-      return false;
-    }
-
-    #endregion
-
-    #region ICollection<Relationship> Interface
 
     public bool Contains(Relationship item)
     {
@@ -129,24 +124,14 @@ namespace MantisSharp
       return _items.GetEnumerator();
     }
 
-    void ICollection<Relationship>.Add(Relationship item)
+    public bool Remove(Relationship item)
     {
-      this.Add(item);
-    }
-
-    void ICollection<Relationship>.Clear()
-    {
-      this.Clear();
+      return false;
     }
 
     IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
-    }
-
-    bool ICollection<Relationship>.Remove(Relationship item)
-    {
-      return this.Remove(item);
     }
 
     public int Count

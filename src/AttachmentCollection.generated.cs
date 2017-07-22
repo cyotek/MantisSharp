@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class AttachmentCollection : ICollection<Attachment>
+  public partial class AttachmentCollection : ICollection<Attachment>
   {
     #region Constants
 
@@ -124,7 +124,7 @@ namespace MantisSharp
       return index != -1;
     }
 
-    internal void Add(Attachment item)
+    public void Add(Attachment item)
     {
       string name;
       int index;
@@ -158,19 +158,19 @@ namespace MantisSharp
       _indexesById.Add(item.Id, index);
     }
 
-    internal void Clear()
+    public void Clear()
     {
       _indexesById.Clear();
       _indexesByName.Clear();
       _items.Clear();
     }
 
-    internal bool Remove(Attachment item)
+    public bool Remove(Attachment item)
     {
       return this.Remove(item.FileName);
     }
 
-    internal bool Remove(string key)
+    public bool Remove(string key)
     {
       int index;
 
@@ -206,24 +206,9 @@ namespace MantisSharp
       return _items.GetEnumerator();
     }
 
-    void ICollection<Attachment>.Add(Attachment item)
-    {
-      this.Add(item);
-    }
-
-    void ICollection<Attachment>.Clear()
-    {
-      this.Clear();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
+       IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
-    }
-
-    bool ICollection<Attachment>.Remove(Attachment item)
-    {
-      return this.Remove(item);
     }
 
     public int Count

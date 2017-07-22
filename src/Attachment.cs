@@ -33,42 +33,42 @@ namespace MantisSharp
     public string ContentType
     {
       get { return _contentType; }
-      internal set { _contentType = value; }
+      set { _contentType = value; }
     }
 
     [Json("created_at")]
     public DateTime Created
     {
       get { return _created; }
-      internal set { _created = value; }
+      set { _created = value; }
     }
 
     [Json("download_url")]
     public string DownloadUrl
     {
       get { return _downloadUrl; }
-      internal set { _downloadUrl = value; }
+      set { _downloadUrl = value; }
     }
 
     [Json("filename")]
     public string FileName
     {
       get { return _fileName; }
-      internal set { _fileName = value; }
+      set { _fileName = value; }
     }
 
     [Json("reporter")]
     public User Reporter
     {
       get { return _reporter; }
-      internal set { _reporter = value; }
+      set { _reporter = value; }
     }
 
     [Json("size")]
     public long Size
     {
       get { return _size; }
-      internal set { _size = value; }
+      set { _size = value; }
     }
 
     #endregion

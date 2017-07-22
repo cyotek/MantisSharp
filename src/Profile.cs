@@ -30,35 +30,35 @@ namespace MantisSharp
     public string Description
     {
       get { return _description; }
-      internal set { _description = value; }
+      set { _description = value; }
     }
 
     [Json("os")]
     public string OperatingSystem
     {
       get { return _operatingSystem; }
-      internal set { _operatingSystem = value; }
+      set { _operatingSystem = value; }
     }
 
     [Json("os_build")]
     public string OperatingSystemBuild
     {
       get { return _operatingSystemBuild; }
-      internal set { _operatingSystemBuild = value; }
+      set { _operatingSystemBuild = value; }
     }
 
     [Json("platform")]
     public string Platform
     {
       get { return _platform; }
-      internal set { _platform = value; }
+      set { _platform = value; }
     }
 
     [Json("user")]
     public User User
     {
       get { return _user; }
-      internal set { _user = value; }
+      set { _user = value; }
     }
 
     #endregion

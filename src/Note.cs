@@ -33,42 +33,42 @@ namespace MantisSharp
     public DateTime Created
     {
       get { return _created; }
-      internal set { _created = value; }
+      set { _created = value; }
     }
 
     [Json("updated_at")]
     public DateTime LastModified
     {
       get { return _lastModified; }
-      internal set { _lastModified = value; }
+      set { _lastModified = value; }
     }
 
     [Json("reporter")]
     public User Reporter
     {
       get { return _reporter; }
-      internal set { _reporter = value; }
+      set { _reporter = value; }
     }
 
     [Json("text")]
     public string Text
     {
       get { return _text; }
-      internal set { _text = value; }
+      set { _text = value; }
     }
 
     [Json("type")]
     public string Type
     {
       get { return _type; }
-      internal set { _type = value; }
+      set { _type = value; }
     }
 
     [Json("view_state")]
     public ViewState ViewState
     {
       get { return _viewState; }
-      internal set { _viewState = value; }
+      set { _viewState = value; }
     }
 
     #endregion

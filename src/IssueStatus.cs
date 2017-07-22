@@ -23,7 +23,7 @@ namespace MantisSharp
     public string Color
     {
       get { return _color; }
-      internal set { _color = value; }
+      set { _color = value; }
     }
 
     #endregion

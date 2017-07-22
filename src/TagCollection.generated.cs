@@ -21,7 +21,7 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class TagCollection : ICollection<Tag>
+  public partial class TagCollection : ICollection<Tag>
   {
     #region Constants
 
@@ -124,7 +124,7 @@ namespace MantisSharp
       return index != -1;
     }
 
-    internal void Add(Tag item)
+    public void Add(Tag item)
     {
       string name;
       int index;
@@ -158,19 +158,19 @@ namespace MantisSharp
       _indexesById.Add(item.Id, index);
     }
 
-    internal void Clear()
+    public void Clear()
     {
       _indexesById.Clear();
       _indexesByName.Clear();
       _items.Clear();
     }
 
-    internal bool Remove(Tag item)
+    public bool Remove(Tag item)
     {
       return this.Remove(item.Name);
     }
 
-    internal bool Remove(string key)
+    public bool Remove(string key)
     {
       int index;
 
@@ -206,24 +206,9 @@ namespace MantisSharp
       return _items.GetEnumerator();
     }
 
-    void ICollection<Tag>.Add(Tag item)
-    {
-      this.Add(item);
-    }
-
-    void ICollection<Tag>.Clear()
-    {
-      this.Clear();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
+       IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
-    }
-
-    bool ICollection<Tag>.Remove(Tag item)
-    {
-      return this.Remove(item);
     }
 
     public int Count

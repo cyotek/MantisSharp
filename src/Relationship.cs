@@ -24,14 +24,14 @@ namespace MantisSharp
     public RelationshipType RelationshipType
     {
       get { return _relationshipType; }
-      internal set { _relationshipType = value; }
+      set { _relationshipType = value; }
     }
 
     [Json("target_id")]
     public int TargetId
     {
       get { return _targetId; }
-      internal set { _targetId = value; }
+      set { _targetId = value; }
     }
 
     #endregion

@@ -29,28 +29,28 @@ namespace MantisSharp
     public string Description
     {
       get { return _description; }
-      internal set { _description = value; }
+      set { _description = value; }
     }
 
     [Json("obsolete")]
     public bool Obsolete
     {
       get { return _obsolete; }
-      internal set { _obsolete = value; }
+      set { _obsolete = value; }
     }
 
     [Json("released")]
     public bool Released
     {
       get { return _released; }
-      internal set { _released = value; }
+      set { _released = value; }
     }
 
     [Json("timestamp")]
     public DateTime Timestamp
     {
       get { return _timestamp; }
-      internal set { _timestamp = value; }
+      set { _timestamp = value; }
     }
 
     #endregion

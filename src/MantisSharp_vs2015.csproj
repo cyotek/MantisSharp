@@ -103,6 +103,7 @@
     <Compile Include="IssueStatus.cs" />
     <Compile Include="StringBuilderCache.cs" />
     <Compile Include="Tag.cs" />
+    <Compile Include="TagCollection.cs" />
     <Compile Include="TagCollection.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

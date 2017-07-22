@@ -26,7 +26,7 @@ using System.Collections.Generic;
 
 namespace MantisSharp
 {
-  public class <#=className #> : ICollection<<#=itemType #>>
+  public partial class <#=className #> : ICollection<<#=itemType #>>
   {
     #region Constants
 
@@ -154,7 +154,7 @@ namespace MantisSharp
       return index != -1;
     }
 
-    internal void Add(<#=itemType #> item)
+    public void Add(<#=itemType #> item)
     {
 <# if (hasStringKeyComponent)
     {
@@ -203,7 +203,7 @@ namespace MantisSharp
       _indexesById.Add(item.Id, index);
     }
 
-    internal void Clear()
+    public void Clear()
     {
       _indexesById.Clear();
 <# if (hasStringKeyComponent)
@@ -215,7 +215,7 @@ namespace MantisSharp
       _items.Clear();
     }
 
-    internal bool Remove(<#=itemType #> item)
+    public bool Remove(<#=itemType #> item)
     {
 <# if (hasStringKeyComponent)
     {
@@ -234,7 +234,7 @@ namespace MantisSharp
 <# if (hasStringKeyComponent)
     {
       #>
-    internal bool Remove(string key)
+    public bool Remove(string key)
     {
       int index;
 
@@ -272,24 +272,9 @@ namespace MantisSharp
       return _items.GetEnumerator();
     }
 
-    void ICollection<<#=itemType #>>.Add(<#=itemType #> item)
-    {
-      this.Add(item);
-    }
-
-    void ICollection<<#=itemType #>>.Clear()
-    {
-      this.Clear();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
+       IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
-    }
-
-    bool ICollection<<#=itemType #>>.Remove(<#=itemType #> item)
-    {
-      return this.Remove(item);
     }
 
     public int Count
