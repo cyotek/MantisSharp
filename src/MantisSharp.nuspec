@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>MantisSharp</id>
-        <version>0.3.0-alpha</version>
+        <version>0.4.0-alpha</version>
         <title>MantisSharp</title>
         <authors>Cyotek</authors>
         <owners>Cyotek</owners>
@@ -12,7 +12,7 @@
         <description>A simple client for working with MantisBT via its REST API.</description>
         <summary>REST client for working with MantisBT</summary>
         <releaseNotes />
-        <copyright>Copyright © 2017 Cyotek Ltd. All Rights Reserved.</copyright>
+        <copyright>Copyright © 2017-2020 Cyotek Ltd. All Rights Reserved.</copyright>
         <language>en-GB</language>
         <tags>mantisbt, rest</tags>
     </metadata>
