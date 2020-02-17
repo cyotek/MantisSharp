@@ -4,8 +4,8 @@ SETLOCAL
 
 CALL ..\..\..\build\set35vars.bat
 
-%msbuild15exe% MantisSharp.sln /p:Configuration=Release /verbosity:minimal /nologo /m /t:Clean
-%msbuild15exe% MantisSharp.sln /p:Configuration=Release /verbosity:minimal /nologo /m
+%msbuildexe% MantisSharp.sln /p:Configuration=Release /verbosity:minimal /nologo /m /t:Clean
+%msbuildexe% MantisSharp.sln /p:Configuration=Release /verbosity:minimal /nologo /m
 CALL dualsigncmd src\bin\Release\net35\MantisSharp.dll
 CALL dualsigncmd src\bin\Release\net40\MantisSharp.dll
 CALL     signcmd src\bin\Release\net45\MantisSharp.dll
