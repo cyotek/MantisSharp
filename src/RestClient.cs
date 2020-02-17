@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using System.Security;
@@ -242,8 +242,7 @@ namespace MantisSharp
     {
       Encoding encoding;
 
-      // ReSharper disable once AssignNullToNotNullAttribute
-      encoding = !string.IsNullOrEmpty(response.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
+      encoding = string.IsNullOrEmpty(response.CharacterSet) ? Encoding.UTF8 : Encoding.GetEncoding(response.CharacterSet);
 
       using (Stream stream = response.GetResponseStream())
       {
