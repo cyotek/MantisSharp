@@ -4,6 +4,7 @@ obj/
 _NCrunch_*
 nuget/
 packages/
+website/output/
 
 *.ncrunch*
 *.user
